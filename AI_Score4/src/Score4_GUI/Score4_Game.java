@@ -45,15 +45,20 @@ public class Score4_Game extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        board_backround.setIcon(new javax.swing.ImageIcon("C:\\Users\\p3120124\\Documents\\NetBeansProjects\\AI_Score4\\AI_Score4\\Assets\\Connect4Board.png")); // NOI18N
+        board_backround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Score4_GUI/Assets/Connect4Board.png"))); // NOI18N
 
         board_column1.setOpaque(false);
+        board_column1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column1Layout = new javax.swing.GroupLayout(board_column1);
         board_column1.setLayout(board_column1Layout);
         board_column1Layout.setHorizontalGroup(
             board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 81, Short.MAX_VALUE)
+            .addGap(0, 87, Short.MAX_VALUE)
         );
         board_column1Layout.setVerticalGroup(
             board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,6 +84,11 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         board_column3.setOpaque(false);
+        board_column3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column3Layout = new javax.swing.GroupLayout(board_column3);
         board_column3.setLayout(board_column3Layout);
@@ -92,6 +102,11 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         board_column4.setOpaque(false);
+        board_column4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column4Layout = new javax.swing.GroupLayout(board_column4);
         board_column4.setLayout(board_column4Layout);
@@ -105,6 +120,11 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         board_column5.setOpaque(false);
+        board_column5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column5Layout = new javax.swing.GroupLayout(board_column5);
         board_column5.setLayout(board_column5Layout);
@@ -118,6 +138,11 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         board_column6.setOpaque(false);
+        board_column6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column6Layout = new javax.swing.GroupLayout(board_column6);
         board_column6.setLayout(board_column6Layout);
@@ -131,6 +156,11 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         board_column7.setOpaque(false);
+        board_column7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout board_column7Layout = new javax.swing.GroupLayout(board_column7);
         board_column7.setLayout(board_column7Layout);
@@ -180,14 +210,14 @@ public class Score4_Game extends javax.swing.JFrame {
                 .addComponent(board_column4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(board_column5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(board_column6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(board_column7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(board_backround, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
+                    .addComponent(board_backround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -215,6 +245,37 @@ public class Score4_Game extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("column2 clicked!");
     }//GEN-LAST:event_board_column2MouseClicked
+
+    private void board_column1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column1MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column1 clicked!");
+        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Assets\\green_player.png")));
+    }//GEN-LAST:event_board_column1MouseClicked
+
+    private void board_column3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column3MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column3 clicked!");
+    }//GEN-LAST:event_board_column3MouseClicked
+
+    private void board_column4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column4MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column4 clicked!");
+    }//GEN-LAST:event_board_column4MouseClicked
+
+    private void board_column5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column5MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column5 clicked!");
+    }//GEN-LAST:event_board_column5MouseClicked
+
+    private void board_column6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column6MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column6 clicked!");
+    }//GEN-LAST:event_board_column6MouseClicked
+
+    private void board_column7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column7MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column7 clicked!");
+    }//GEN-LAST:event_board_column7MouseClicked
 
     /**
      * @param args the command line arguments
