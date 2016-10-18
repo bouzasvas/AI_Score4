@@ -13,7 +13,7 @@ package Score4_GUI;
 public class Score4_Game extends javax.swing.JFrame {
 
     /**
-     * Creates new form Score4_Game
+     * Creates new form NewJFrame
      */
     public Score4_Game() {
         initComponents();
@@ -29,6 +29,13 @@ public class Score4_Game extends javax.swing.JFrame {
     private void initComponents() {
 
         board_backround = new javax.swing.JLabel();
+        board_column1 = new javax.swing.JPanel();
+        board_column2 = new javax.swing.JPanel();
+        board_column3 = new javax.swing.JPanel();
+        board_column4 = new javax.swing.JPanel();
+        board_column5 = new javax.swing.JPanel();
+        board_column6 = new javax.swing.JPanel();
+        board_column7 = new javax.swing.JPanel();
         Menu = new javax.swing.JMenuBar();
         File_menu = new javax.swing.JMenu();
         NewGame_menuItem = new javax.swing.JMenuItem();
@@ -36,10 +43,105 @@ public class Score4_Game extends javax.swing.JFrame {
         Edit_menu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 530));
         setResizable(false);
 
         board_backround.setIcon(new javax.swing.ImageIcon("C:\\Users\\p3120124\\Documents\\NetBeansProjects\\AI_Score4\\AI_Score4\\Assets\\Connect4Board.png")); // NOI18N
+
+        board_column1.setOpaque(false);
+
+        javax.swing.GroupLayout board_column1Layout = new javax.swing.GroupLayout(board_column1);
+        board_column1.setLayout(board_column1Layout);
+        board_column1Layout.setHorizontalGroup(
+            board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        board_column1Layout.setVerticalGroup(
+            board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+
+        board_column2.setOpaque(false);
+        board_column2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                board_column2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout board_column2Layout = new javax.swing.GroupLayout(board_column2);
+        board_column2.setLayout(board_column2Layout);
+        board_column2Layout.setHorizontalGroup(
+            board_column2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 83, Short.MAX_VALUE)
+        );
+        board_column2Layout.setVerticalGroup(
+            board_column2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        board_column3.setOpaque(false);
+
+        javax.swing.GroupLayout board_column3Layout = new javax.swing.GroupLayout(board_column3);
+        board_column3.setLayout(board_column3Layout);
+        board_column3Layout.setHorizontalGroup(
+            board_column3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 82, Short.MAX_VALUE)
+        );
+        board_column3Layout.setVerticalGroup(
+            board_column3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        board_column4.setOpaque(false);
+
+        javax.swing.GroupLayout board_column4Layout = new javax.swing.GroupLayout(board_column4);
+        board_column4.setLayout(board_column4Layout);
+        board_column4Layout.setHorizontalGroup(
+            board_column4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+        );
+        board_column4Layout.setVerticalGroup(
+            board_column4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        board_column5.setOpaque(false);
+
+        javax.swing.GroupLayout board_column5Layout = new javax.swing.GroupLayout(board_column5);
+        board_column5.setLayout(board_column5Layout);
+        board_column5Layout.setHorizontalGroup(
+            board_column5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 82, Short.MAX_VALUE)
+        );
+        board_column5Layout.setVerticalGroup(
+            board_column5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        board_column6.setOpaque(false);
+
+        javax.swing.GroupLayout board_column6Layout = new javax.swing.GroupLayout(board_column6);
+        board_column6.setLayout(board_column6Layout);
+        board_column6Layout.setHorizontalGroup(
+            board_column6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 85, Short.MAX_VALUE)
+        );
+        board_column6Layout.setVerticalGroup(
+            board_column6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        board_column7.setOpaque(false);
+
+        javax.swing.GroupLayout board_column7Layout = new javax.swing.GroupLayout(board_column7);
+        board_column7.setLayout(board_column7Layout);
+        board_column7Layout.setHorizontalGroup(
+            board_column7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 82, Short.MAX_VALUE)
+        );
+        board_column7Layout.setVerticalGroup(
+            board_column7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         File_menu.setText("File");
 
@@ -68,12 +170,37 @@ public class Score4_Game extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(board_backround)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(board_column1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(board_column2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(board_column3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(board_column4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(board_column5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(board_column6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(board_column7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 18, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(board_backround, javax.swing.GroupLayout.PREFERRED_SIZE, 639, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(board_backround)
+            .addComponent(board_column1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(board_column7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(board_backround, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,6 +210,11 @@ public class Score4_Game extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(1);
     }//GEN-LAST:event_Exit_menuItemActionPerformed
+
+    private void board_column2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column2MouseClicked
+        // TODO add your handling code here:
+        System.out.println("column2 clicked!");
+    }//GEN-LAST:event_board_column2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -126,5 +258,12 @@ public class Score4_Game extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenuItem NewGame_menuItem;
     private javax.swing.JLabel board_backround;
+    private javax.swing.JPanel board_column1;
+    private javax.swing.JPanel board_column2;
+    private javax.swing.JPanel board_column3;
+    private javax.swing.JPanel board_column4;
+    private javax.swing.JPanel board_column5;
+    private javax.swing.JPanel board_column6;
+    private javax.swing.JPanel board_column7;
     // End of variables declaration//GEN-END:variables
 }
