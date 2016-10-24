@@ -5,6 +5,7 @@
  */
 package Score4_GUI;
 
+import Score4_AI.Player;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,9 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonModel;
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +31,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Creates new form MainGUI
      */
-    String[] difficultyLevel = {"Easy", "Medium", "Hard"};
+    private String[] difficultyLevel = {"Easy", "Medium", "Hard"};
+    private javax.swing.JPanel thisWindow = (javax.swing.JPanel) getContentPane();
     
     public MainGUI() {
         initComponents();
@@ -239,8 +243,30 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void START_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_START_buttonActionPerformed
         // TODO add your handling code here:
-        new Score4_Game().setVisible(true);
-        this.dispose();
+        boolean inputOk = true;
+        String IconFile = null;
+        
+        if (this.NameText.getText().equals("") || (this.NameText.getText() == null)) {
+            JOptionPane.showMessageDialog(this, "Please type your name", "Name is required", JOptionPane.INFORMATION_MESSAGE);
+            inputOk = false;
+        }
+        if (this.DifficultyList.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Please select a difficulty lever", "Select difficulty level", JOptionPane.INFORMATION_MESSAGE);
+            inputOk = false;
+        }
+        if (!(this.greenPlayer.isSelected() || this.redPlayer.isSelected())) {
+            JOptionPane.showMessageDialog(this, "Please select your favourite color", "Select color", JOptionPane.INFORMATION_MESSAGE);
+            inputOk = false;
+        }
+        else {
+            IconFile = greenPlayer.isSelected() ? "/Assets/green_player.png" : "/Assets/red_player.png";
+        }
+        
+        if (inputOk) {
+            Player player = new Player(thisWindow, false, this.NameText.getText(), this.DifficultyList.getSelectedItem().toString(), IconFile);
+            new Score4_Game().setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_START_buttonActionPerformed
 
     private void greenPlayer_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_greenPlayer_iconMouseClicked
