@@ -19,7 +19,7 @@ public class Game {
     private Player player, cpu;
     private int gameTime = 0;
     private Random randomTurn = new Random();
-    private int turn;
+    private int turn; //1 is player, 0 is cpu
     private JLabel timeLabel;
     
     public Game() {
@@ -45,6 +45,15 @@ public class Game {
             }
         });
         timer.start();
+    }
+    
+    public int whosNext() {
+        if (turn == 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
     
     public int getTurn() {
