@@ -5,20 +5,12 @@
  */
 package Score4_GUI;
 
+import Score4_AI.Game;
 import Score4_AI.Player;
 import java.awt.Desktop;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
@@ -244,7 +236,8 @@ public class MainGUI extends javax.swing.JFrame {
     private void START_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_START_buttonActionPerformed
         // TODO add your handling code here:
         boolean inputOk = true;
-        String IconFile = null;
+        String userIconFile = null;
+        String cpuIconFile = null;
         
         if (this.NameText.getText().equals("") || (this.NameText.getText() == null)) {
             JOptionPane.showMessageDialog(this, "Please type your name", "Name is required", JOptionPane.INFORMATION_MESSAGE);
@@ -259,12 +252,15 @@ public class MainGUI extends javax.swing.JFrame {
             inputOk = false;
         }
         else {
-            IconFile = greenPlayer.isSelected() ? "/Assets/green_player.png" : "/Assets/red_player.png";
+            userIconFile = greenPlayer.isSelected() ? "/Assets/green_player.png" : "/Assets/red_player.png";
+            cpuIconFile = greenPlayer.isSelected() ? "/Assets/red_player.png" : "/Assets/green_player.png";
         }
         
         if (inputOk) {
-            Player player = new Player(thisWindow, false, this.NameText.getText(), this.DifficultyList.getSelectedItem().toString(), IconFile);
-            new Score4_Game().setVisible(true);
+            Player player = new Player(thisWindow, false, this.NameText.getText(), this.DifficultyList.getSelectedItem().toString(), userIconFile);
+            Player cpu = new Player(thisWindow, cpuIconFile);
+            Game newGame = new Game(player, cpu);
+            new Score4_Game(newGame).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_START_buttonActionPerformed
