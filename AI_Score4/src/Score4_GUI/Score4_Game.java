@@ -6,6 +6,8 @@
 
 package Score4_GUI;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author p3120124
@@ -13,7 +15,7 @@ package Score4_GUI;
 public class Score4_Game extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewJFrame
+     * Creates new form Score4_Game
      */
     public Score4_Game() {
         initComponents();
@@ -28,254 +30,144 @@ public class Score4_Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        board_backround = new javax.swing.JLabel();
-        board_column1 = new javax.swing.JPanel();
-        board_column2 = new javax.swing.JPanel();
-        board_column3 = new javax.swing.JPanel();
-        board_column4 = new javax.swing.JPanel();
-        board_column5 = new javax.swing.JPanel();
-        board_column6 = new javax.swing.JPanel();
-        board_column7 = new javax.swing.JPanel();
-        Menu = new javax.swing.JMenuBar();
-        File_menu = new javax.swing.JMenu();
-        NewGame_menuItem = new javax.swing.JMenuItem();
-        Exit_menuItem = new javax.swing.JMenuItem();
-        Edit_menu = new javax.swing.JMenu();
+        score4Board = new javax.swing.JLabel();
+        columnButtons = new javax.swing.JToolBar();
+        col1Button = new javax.swing.JButton();
+        colSeperator1 = new javax.swing.JToolBar.Separator();
+        col2Button = new javax.swing.JButton();
+        colSeperator2 = new javax.swing.JToolBar.Separator();
+        col3Button = new javax.swing.JButton();
+        colSeperator3 = new javax.swing.JToolBar.Separator();
+        col4Button = new javax.swing.JButton();
+        colSeperator4 = new javax.swing.JToolBar.Separator();
+        col5Button = new javax.swing.JButton();
+        colSeperator5 = new javax.swing.JToolBar.Separator();
+        col6Button = new javax.swing.JButton();
+        colSeperator6 = new javax.swing.JToolBar.Separator();
+        col7Button = new javax.swing.JButton();
+        inGameMenu = new javax.swing.JMenuBar();
+        FileMenu = new javax.swing.JMenu();
+        Edit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Score4");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
+        setLocation(new java.awt.Point(450, 200));
         setResizable(false);
 
-        board_backround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Score4_GUI/Assets/Connect4Board.png"))); // NOI18N
+        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
 
-        board_column1.setOpaque(false);
-        board_column1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column1MouseClicked(evt);
-            }
-        });
+        columnButtons.setBorder(new javax.swing.border.MatteBorder(null));
+        columnButtons.setFloatable(false);
+        columnButtons.setRollover(true);
+        columnButtons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout board_column1Layout = new javax.swing.GroupLayout(board_column1);
-        board_column1.setLayout(board_column1Layout);
-        board_column1Layout.setHorizontalGroup(
-            board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 87, Short.MAX_VALUE)
-        );
-        board_column1Layout.setVerticalGroup(
-            board_column1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
-        );
+        col1Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col1Button.setMnemonic(KeyEvent.VK_1);
+        col1Button.setText("Col1");
+        col1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col1Button.setFocusable(false);
+        col1Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col1Button.setMargin(new java.awt.Insets(2, 23, 2, 18));
+        col1Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col1Button);
+        columnButtons.add(colSeperator1);
 
-        board_column2.setOpaque(false);
-        board_column2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column2MouseClicked(evt);
-            }
-        });
+        col2Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col2Button.setMnemonic(KeyEvent.VK_2);
+        col2Button.setText("Col2");
+        col2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col2Button.setFocusable(false);
+        col2Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col2Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col2Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col2Button);
+        columnButtons.add(colSeperator2);
 
-        javax.swing.GroupLayout board_column2Layout = new javax.swing.GroupLayout(board_column2);
-        board_column2.setLayout(board_column2Layout);
-        board_column2Layout.setHorizontalGroup(
-            board_column2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
-        );
-        board_column2Layout.setVerticalGroup(
-            board_column2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        col3Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col3Button.setMnemonic(KeyEvent.VK_3);
+        col3Button.setText("Col3");
+        col3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col3Button.setFocusable(false);
+        col3Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col3Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col3Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col3Button);
+        columnButtons.add(colSeperator3);
 
-        board_column3.setOpaque(false);
-        board_column3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column3MouseClicked(evt);
-            }
-        });
+        col4Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col4Button.setMnemonic(KeyEvent.VK_4);
+        col4Button.setText("Col4");
+        col4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col4Button.setFocusable(false);
+        col4Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col4Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col4Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col4Button);
+        columnButtons.add(colSeperator4);
 
-        javax.swing.GroupLayout board_column3Layout = new javax.swing.GroupLayout(board_column3);
-        board_column3.setLayout(board_column3Layout);
-        board_column3Layout.setHorizontalGroup(
-            board_column3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
-        );
-        board_column3Layout.setVerticalGroup(
-            board_column3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        col5Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col5Button.setMnemonic(KeyEvent.VK_5);
+        col5Button.setText("Col5");
+        col5Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col5Button.setFocusable(false);
+        col5Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col5Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col5Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col5Button);
+        columnButtons.add(colSeperator5);
 
-        board_column4.setOpaque(false);
-        board_column4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column4MouseClicked(evt);
-            }
-        });
+        col6Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col6Button.setMnemonic(KeyEvent.VK_6);
+        col6Button.setText("Col6");
+        col6Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col6Button.setFocusable(false);
+        col6Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col6Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col6Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col6Button);
+        columnButtons.add(colSeperator6);
 
-        javax.swing.GroupLayout board_column4Layout = new javax.swing.GroupLayout(board_column4);
-        board_column4.setLayout(board_column4Layout);
-        board_column4Layout.setHorizontalGroup(
-            board_column4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-        );
-        board_column4Layout.setVerticalGroup(
-            board_column4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        col7Button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        col7Button.setMnemonic(KeyEvent.VK_7);
+        col7Button.setText("Col7");
+        col7Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        col7Button.setFocusable(false);
+        col7Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        col7Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col7Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        columnButtons.add(col7Button);
 
-        board_column5.setOpaque(false);
-        board_column5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column5MouseClicked(evt);
-            }
-        });
+        FileMenu.setText("File");
+        inGameMenu.add(FileMenu);
 
-        javax.swing.GroupLayout board_column5Layout = new javax.swing.GroupLayout(board_column5);
-        board_column5.setLayout(board_column5Layout);
-        board_column5Layout.setHorizontalGroup(
-            board_column5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
-        );
-        board_column5Layout.setVerticalGroup(
-            board_column5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        Edit.setText("Edit");
+        inGameMenu.add(Edit);
 
-        board_column6.setOpaque(false);
-        board_column6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column6MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout board_column6Layout = new javax.swing.GroupLayout(board_column6);
-        board_column6.setLayout(board_column6Layout);
-        board_column6Layout.setHorizontalGroup(
-            board_column6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 85, Short.MAX_VALUE)
-        );
-        board_column6Layout.setVerticalGroup(
-            board_column6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        board_column7.setOpaque(false);
-        board_column7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                board_column7MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout board_column7Layout = new javax.swing.GroupLayout(board_column7);
-        board_column7.setLayout(board_column7Layout);
-        board_column7Layout.setHorizontalGroup(
-            board_column7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
-        );
-        board_column7Layout.setVerticalGroup(
-            board_column7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        File_menu.setText("File");
-
-        NewGame_menuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        NewGame_menuItem.setText("New Game");
-        File_menu.add(NewGame_menuItem);
-
-        Exit_menuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        Exit_menuItem.setText("Exit");
-        Exit_menuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Exit_menuItemActionPerformed(evt);
-            }
-        });
-        File_menu.add(Exit_menuItem);
-
-        Menu.add(File_menu);
-
-        Edit_menu.setText("Edit");
-        Menu.add(Edit_menu);
-
-        setJMenuBar(Menu);
+        setJMenuBar(inGameMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(board_column1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(board_column7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(board_backround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(score4Board))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(board_column1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(board_column7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(board_backround, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(columnButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(score4Board))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Exit_menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_menuItemActionPerformed
-        // TODO add your handling code here:
-        System.exit(1);
-    }//GEN-LAST:event_Exit_menuItemActionPerformed
-
-    private void board_column2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column2MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column2 clicked!");
-    }//GEN-LAST:event_board_column2MouseClicked
-
-    private void board_column1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column1MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column1 clicked!");
-        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Assets\\green_player.png")));
-    }//GEN-LAST:event_board_column1MouseClicked
-
-    private void board_column3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column3MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column3 clicked!");
-    }//GEN-LAST:event_board_column3MouseClicked
-
-    private void board_column4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column4MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column4 clicked!");
-    }//GEN-LAST:event_board_column4MouseClicked
-
-    private void board_column5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column5MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column5 clicked!");
-    }//GEN-LAST:event_board_column5MouseClicked
-
-    private void board_column6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column6MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column6 clicked!");
-    }//GEN-LAST:event_board_column6MouseClicked
-
-    private void board_column7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_board_column7MouseClicked
-        // TODO add your handling code here:
-        System.out.println("column7 clicked!");
-    }//GEN-LAST:event_board_column7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -313,18 +205,23 @@ public class Score4_Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Edit_menu;
-    private javax.swing.JMenuItem Exit_menuItem;
-    private javax.swing.JMenu File_menu;
-    private javax.swing.JMenuBar Menu;
-    private javax.swing.JMenuItem NewGame_menuItem;
-    private javax.swing.JLabel board_backround;
-    private javax.swing.JPanel board_column1;
-    private javax.swing.JPanel board_column2;
-    private javax.swing.JPanel board_column3;
-    private javax.swing.JPanel board_column4;
-    private javax.swing.JPanel board_column5;
-    private javax.swing.JPanel board_column6;
-    private javax.swing.JPanel board_column7;
+    private javax.swing.JMenu Edit;
+    private javax.swing.JMenu FileMenu;
+    private javax.swing.JButton col1Button;
+    private javax.swing.JButton col2Button;
+    private javax.swing.JButton col3Button;
+    private javax.swing.JButton col4Button;
+    private javax.swing.JButton col5Button;
+    private javax.swing.JButton col6Button;
+    private javax.swing.JButton col7Button;
+    private javax.swing.JToolBar.Separator colSeperator1;
+    private javax.swing.JToolBar.Separator colSeperator2;
+    private javax.swing.JToolBar.Separator colSeperator3;
+    private javax.swing.JToolBar.Separator colSeperator4;
+    private javax.swing.JToolBar.Separator colSeperator5;
+    private javax.swing.JToolBar.Separator colSeperator6;
+    private javax.swing.JToolBar columnButtons;
+    private javax.swing.JMenuBar inGameMenu;
+    private javax.swing.JLabel score4Board;
     // End of variables declaration//GEN-END:variables
 }
