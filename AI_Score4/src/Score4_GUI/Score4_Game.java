@@ -30,7 +30,6 @@ public class Score4_Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        score4Board = new javax.swing.JLabel();
         columnButtons = new javax.swing.JToolBar();
         col1Button = new javax.swing.JButton();
         colSeperator1 = new javax.swing.JToolBar.Separator();
@@ -45,6 +44,9 @@ public class Score4_Game extends javax.swing.JFrame {
         col6Button = new javax.swing.JButton();
         colSeperator6 = new javax.swing.JToolBar.Separator();
         col7Button = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        score4Board = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         inGameMenu = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         Edit = new javax.swing.JMenu();
@@ -55,8 +57,6 @@ public class Score4_Game extends javax.swing.JFrame {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         setLocation(new java.awt.Point(450, 200));
         setResizable(false);
-
-        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
 
         columnButtons.setBorder(new javax.swing.border.MatteBorder(null));
         columnButtons.setFloatable(false);
@@ -71,6 +71,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col1Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col1Button.setMargin(new java.awt.Insets(2, 23, 2, 18));
         col1Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col1ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col1Button);
         columnButtons.add(colSeperator1);
 
@@ -139,6 +144,36 @@ public class Score4_Game extends javax.swing.JFrame {
         col7Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         columnButtons.add(col7Button);
 
+        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
+
+        jLayeredPane1.setLayer(score4Board, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2)
+                .addContainerGap(621, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(score4Board)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(score4Board, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         FileMenu.setText("File");
         inGameMenu.add(FileMenu);
 
@@ -155,7 +190,7 @@ public class Score4_Game extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(score4Board))
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -163,11 +198,17 @@ public class Score4_Game extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(columnButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(score4Board))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void col1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col1ButtonActionPerformed
+        // TODO add your handling code here:
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/green_player.png")));
+    }//GEN-LAST:event_col1ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +263,9 @@ public class Score4_Game extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator colSeperator6;
     private javax.swing.JToolBar columnButtons;
     private javax.swing.JMenuBar inGameMenu;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLabel score4Board;
     // End of variables declaration//GEN-END:variables
 }
