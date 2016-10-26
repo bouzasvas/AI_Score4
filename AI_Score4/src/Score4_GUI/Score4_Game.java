@@ -7,10 +7,10 @@
 package Score4_GUI;
 
 import Score4_AI.Game;
+import Score4_AI.Sequin;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
+import java.util.ArrayList;
 
 /**
  *
@@ -85,8 +85,9 @@ public class Score4_Game extends javax.swing.JFrame {
         boardLayerLayout.setHorizontalGroup(
             boardLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(boardLayerLayout.createSequentialGroup()
-                .addComponent(score4Board)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(score4Board, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         boardLayerLayout.setVerticalGroup(
             boardLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +145,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col1Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col1Button.setMargin(new java.awt.Insets(2, 23, 2, 18));
         col1Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col1ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col1Button);
         columnButtons.add(colSeperator1);
 
@@ -155,6 +161,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col2Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col2Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col2Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col2ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col2Button);
         columnButtons.add(colSeperator2);
 
@@ -166,6 +177,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col3Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col3Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col3Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col3ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col3Button);
         columnButtons.add(colSeperator3);
 
@@ -177,6 +193,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col4Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col4Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col4Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col4ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col4Button);
         columnButtons.add(colSeperator4);
 
@@ -188,6 +209,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col5Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col5Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col5Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col5Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col5ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col5Button);
         columnButtons.add(colSeperator5);
 
@@ -199,6 +225,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col6Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col6Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col6Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col6Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col6ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col6Button);
         columnButtons.add(colSeperator6);
 
@@ -210,6 +241,11 @@ public class Score4_Game extends javax.swing.JFrame {
         col7Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         col7Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
         col7Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        col7Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                col7ButtonActionPerformed(evt);
+            }
+        });
         columnButtons.add(col7Button);
 
         infoTimeSeperator.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -260,15 +296,49 @@ public class Score4_Game extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(boardLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))))
+                    .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void col1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col1ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(0, this.thisGame.getPlayer().getpIcon());
+    }//GEN-LAST:event_col1ButtonActionPerformed
+
+    private void col2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col2ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(1, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col2ButtonActionPerformed
+
+    private void col3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col3ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(2, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col3ButtonActionPerformed
+
+    private void col4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col4ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(3, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col4ButtonActionPerformed
+
+    private void col5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col5ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(4, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col5ButtonActionPerformed
+
+    private void col6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col6ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(5, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col6ButtonActionPerformed
+
+    private void col7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col7ButtonActionPerformed
+        Sequin sequin = thisGame.putSequinInPos(6, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin);
+    }//GEN-LAST:event_col7ButtonActionPerformed
+        
+    private void drawSequinInBoard(Sequin sequin) {
+        
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Edit;
@@ -299,4 +369,5 @@ public class Score4_Game extends javax.swing.JFrame {
     private javax.swing.JLabel timeLiveLabel;
     private javax.swing.JPanel timePanel;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -8,6 +8,7 @@ package Score4_AI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
@@ -21,12 +22,15 @@ public class Game {
     private Random randomTurn = new Random();
     private int turn; //1 is player, 0 is cpu
     private JLabel timeLabel;
+    private Sequin[][] score4Sequin;
     
     public Game() {
-        turn = randomTurn.nextInt(1);
+        this.turn = randomTurn.nextInt(1);
+        this.score4Sequin = new Sequin[6][7];
     }
     
     public Game(Player player, Player cpu) {
+        this();
         this.player = player;
         this.cpu = cpu;
     }
@@ -60,7 +64,24 @@ public class Game {
         return turn;
     }
     
+    public Sequin putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
+        for (int row = 0; row < this.score4Sequin.length; row++) {
+            if (this.score4Sequin[row][columnInBoard] == null) {
+                return this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
+            }
+        }
+        return null;
+    }
+    
+    public Sequin getSequin (int row, int column) {
+        return this.score4Sequin[row][column];
+    }
+    
     public void setJLabel(JLabel label) {
         this.timeLabel = label;
+    }
+    
+    public Player getPlayer() {
+        return this.player;
     }
 }
