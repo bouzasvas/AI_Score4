@@ -40,7 +40,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         Sequin[][] sequinArray = this.thisGame.getSequinArray();
         for (int row = 0; row < sequinArray.length; row++) {
             for (int col = 0; col < sequinArray[row].length; col++) {
-                score4Board.add(sequinArray[row][col].getSequin());
+                if (sequinArray[row][col] != null) {
+                    score4Board.add(sequinArray[row][col].getSequin());
+                }
             }
         }
         pack();

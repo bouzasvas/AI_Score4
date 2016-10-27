@@ -8,6 +8,7 @@ package Score4_GUI;
 
 import Score4_AI.Game;
 import Score4_AI.Sequin;
+import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,6 +31,18 @@ public class Score4_Game extends javax.swing.JFrame {
         this.thisGame.setJLabel(timeLiveLabel);
         this.thisGame.startGame();
         //this.playerInfoLabel.setText("It's your turn "+player.getPname());
+        createBoard();
+    }
+    
+    private void createBoard() {
+        Sequin[][] sequinArray = this.thisGame.getSequinArray();
+        for (int row = 0; row < sequinArray.length; row++) {
+            for (int col = 0; col < sequinArray[row].length; col++) {
+                score4JPanel.add(sequinArray[row][col].getSequin());
+            }
+        }
+        Component[] comp = score4JPanel.getComponents();
+        pack();
     }
 
     /**
@@ -41,8 +54,6 @@ public class Score4_Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        boardLayer = new javax.swing.JLayeredPane();
-        score4Board = new javax.swing.JLabel();
         playerInfoPanel = new javax.swing.JPanel();
         playerInfoLabel = new javax.swing.JLabel();
         timePanel = new javax.swing.JPanel();
@@ -65,6 +76,9 @@ public class Score4_Game extends javax.swing.JFrame {
         buttonsBoardSeperator = new javax.swing.JSeparator();
         infoBoardSeperator = new javax.swing.JSeparator();
         infoTimeSeperator = new javax.swing.JSeparator();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        score4Board = new javax.swing.JLabel();
+        score4JPanel = new javax.swing.JPanel();
         inGameMenu = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         Edit = new javax.swing.JMenu();
@@ -75,26 +89,6 @@ public class Score4_Game extends javax.swing.JFrame {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
         setLocation(new java.awt.Point(450, 200));
         setResizable(false);
-
-        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
-
-        boardLayer.setLayer(score4Board, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout boardLayerLayout = new javax.swing.GroupLayout(boardLayer);
-        boardLayer.setLayout(boardLayerLayout);
-        boardLayerLayout.setHorizontalGroup(
-            boardLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boardLayerLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(score4Board, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        boardLayerLayout.setVerticalGroup(
-            boardLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boardLayerLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(score4Board, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         playerInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         playerInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -250,6 +244,39 @@ public class Score4_Game extends javax.swing.JFrame {
 
         infoTimeSeperator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
+
+        score4JPanel.setOpaque(false);
+        score4JPanel.setPreferredSize(new java.awt.Dimension(640, 480));
+        score4JPanel.setLayout(new java.awt.GridLayout(6, 7));
+
+        jLayeredPane1.setLayer(score4Board, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(score4JPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(score4JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(score4Board)
+                    .addGap(0, 1, Short.MAX_VALUE)))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(score4JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(score4Board, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 11, Short.MAX_VALUE)))
+        );
+
         FileMenu.setText("File");
         inGameMenu.add(FileMenu);
 
@@ -262,23 +289,20 @@ public class Score4_Game extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(infoBoardSeperator)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoBoardSeperator)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(playerInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(infoTimeSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boardLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(playerInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoTimeSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,12 +315,11 @@ public class Score4_Game extends javax.swing.JFrame {
                 .addComponent(infoBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boardLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -343,7 +366,6 @@ public class Score4_Game extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Edit;
     private javax.swing.JMenu FileMenu;
-    private javax.swing.JLayeredPane boardLayer;
     private javax.swing.JSeparator buttonsBoardSeperator;
     private javax.swing.JButton col1Button;
     private javax.swing.JButton col2Button;
@@ -362,9 +384,11 @@ public class Score4_Game extends javax.swing.JFrame {
     private javax.swing.JMenuBar inGameMenu;
     private javax.swing.JSeparator infoBoardSeperator;
     private javax.swing.JSeparator infoTimeSeperator;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel playerInfoLabel;
     private javax.swing.JPanel playerInfoPanel;
     private javax.swing.JLabel score4Board;
+    private javax.swing.JPanel score4JPanel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JLabel timeLiveLabel;
     private javax.swing.JPanel timePanel;

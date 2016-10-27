@@ -88,7 +88,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         colorGroupRadio.add(greenPlayer);
 
-        greenPlayer_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/green_player.png"))); // NOI18N
+        greenPlayer_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/green_player_main.png"))); // NOI18N
         greenPlayer_icon.setLabelFor(greenPlayer);
         greenPlayer_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,7 +96,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        redPlayer_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/red_player.png"))); // NOI18N
+        redPlayer_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/red_player_main.png"))); // NOI18N
         redPlayer_icon.setLabelFor(redPlayer);
         redPlayer_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,11 +223,8 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(description2Label)
                             .addComponent(description1Label))
                         .addGap(30, 30, 30)
-                        .addComponent(START_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(playerOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))))
+                        .addComponent(START_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playerOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -260,7 +257,7 @@ public class MainGUI extends javax.swing.JFrame {
             Player player = new Player(thisWindow, false, this.NameText.getText(), this.DifficultyList.getSelectedItem().toString(), userIconFile);
             Player cpu = new Player(thisWindow, cpuIconFile);
             Game newGame = new Game(player, cpu);
-            new Score4_Game_GridLayout(newGame).setVisible(true);
+            new Score4_Game(newGame).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_START_buttonActionPerformed
