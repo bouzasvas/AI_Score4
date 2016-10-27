@@ -45,6 +45,4 @@ public class Sequin {
     public void setSequin(JLabel sequin) {
         this.sequin = sequin;
     }
-    
-   
 }

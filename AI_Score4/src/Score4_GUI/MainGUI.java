@@ -260,7 +260,7 @@ public class MainGUI extends javax.swing.JFrame {
             Player player = new Player(thisWindow, false, this.NameText.getText(), this.DifficultyList.getSelectedItem().toString(), userIconFile);
             Player cpu = new Player(thisWindow, cpuIconFile);
             Game newGame = new Game(player, cpu);
-            new Score4_Game(newGame).setVisible(true);
+            new Score4_Game_GridLayout(newGame).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_START_buttonActionPerformed

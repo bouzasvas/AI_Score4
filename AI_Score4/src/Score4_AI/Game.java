@@ -37,6 +37,13 @@ public class Game {
     
     public void startGame() {
         startTimer();
+        
+        //testing ONLY
+        for (int i =0; i < this.score4Sequin.length; i++) {
+            for (int j = 0; j < this.score4Sequin[i].length; j++) {
+                this.score4Sequin[i][j] = (new Sequin(i, j, new ImageIcon(getClass().getResource("/Assets/green_player.png"))));
+            }
+        }
     }
 
     public void startTimer() {
@@ -75,6 +82,10 @@ public class Game {
     
     public Sequin getSequin (int row, int column) {
         return this.score4Sequin[row][column];
+    }
+    
+    public Sequin[][] getSequinArray() {
+        return this.score4Sequin;
     }
     
     public void setJLabel(JLabel label) {

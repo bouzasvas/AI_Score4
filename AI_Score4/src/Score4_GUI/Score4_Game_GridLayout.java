@@ -8,9 +8,12 @@ package Score4_GUI;
 
 import Score4_AI.Game;
 import Score4_AI.Sequin;
+import java.awt.Component;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JButton;
 
 /**
  *
@@ -29,7 +32,19 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         this.thisGame = game;
         this.thisGame.setJLabel(timeLiveLabel);
         this.thisGame.startGame();
+        createBoard();
         //this.playerInfoLabel.setText("It's your turn "+player.getPname());
+    }
+    
+    private void createBoard() {
+        Sequin[][] sequinArray = this.thisGame.getSequinArray();
+        for (int row = 0; row < sequinArray.length; row++) {
+            for (int col = 0; col < sequinArray[row].length; col++) {
+                score4Board.add(sequinArray[row][col].getSequin());
+            }
+        }
+        pack();
+        Component[] sequins = score4Board.getComponents();
     }
 
     /**
@@ -63,7 +78,7 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         buttonsBoardSeperator = new javax.swing.JSeparator();
         infoBoardSeperator = new javax.swing.JSeparator();
         infoTimeSeperator = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
+        score4Board = new javax.swing.JPanel();
         inGameMenu = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         Edit = new javax.swing.JMenu();
@@ -122,7 +137,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col1Button.setFocusable(false);
         col1Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col1Button.setMargin(new java.awt.Insets(2, 23, 2, 18));
+        col1Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col1Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col1Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col1Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +155,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col2Button.setFocusable(false);
         col2Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col2Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col2Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col2Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col2Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col2Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +173,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col3Button.setFocusable(false);
         col3Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col3Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col3Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col3Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col3Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col3Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col3Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +191,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col4Button.setFocusable(false);
         col4Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col4Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col4Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col4Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col4Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col4Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col4Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +209,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col5Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col5Button.setFocusable(false);
         col5Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col5Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col5Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col5Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col5Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col5Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col5Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +227,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col6Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col6Button.setFocusable(false);
         col6Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col6Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col6Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col6Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col6Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col6Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col6Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +245,10 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
         col7Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         col7Button.setFocusable(false);
         col7Button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        col7Button.setMargin(new java.awt.Insets(2, 23, 2, 14));
+        col7Button.setMargin(new java.awt.Insets(2, 10, 2, 14));
+        col7Button.setMaximumSize(new java.awt.Dimension(70, 29));
+        col7Button.setMinimumSize(new java.awt.Dimension(70, 29));
+        col7Button.setPreferredSize(new java.awt.Dimension(90, 29));
         col7Button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         col7Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,16 +259,7 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
 
         infoTimeSeperator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
-        );
+        score4Board.setLayout(new java.awt.GridLayout(6, 7));
 
         FileMenu.setText("File");
         inGameMenu.add(FileMenu);
@@ -259,14 +280,12 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
                 .addComponent(infoTimeSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(buttonsBoardSeperator)
+                    .addComponent(score4Board, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)))
+            .addComponent(columnButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +301,7 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(score4Board, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -347,9 +366,9 @@ public class Score4_Game_GridLayout extends javax.swing.JFrame {
     private javax.swing.JMenuBar inGameMenu;
     private javax.swing.JSeparator infoBoardSeperator;
     private javax.swing.JSeparator infoTimeSeperator;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel playerInfoLabel;
     private javax.swing.JPanel playerInfoPanel;
+    private javax.swing.JPanel score4Board;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JLabel timeLiveLabel;
     private javax.swing.JPanel timePanel;
