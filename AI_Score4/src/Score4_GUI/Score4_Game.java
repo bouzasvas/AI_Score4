@@ -7,11 +7,13 @@
 package Score4_GUI;
 
 import Score4_AI.Game;
-import Score4_AI.Sequin;
 import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,24 +26,27 @@ public class Score4_Game extends javax.swing.JFrame {
      */
     private Game thisGame;
     public int time = 0;
+    private List seqPosition;
     
     public Score4_Game(Game game) {
         initComponents();
         this.thisGame = game;
         this.thisGame.setJLabel(timeLiveLabel);
         this.thisGame.startGame();
-        //this.playerInfoLabel.setText("It's your turn "+player.getPname());
         createBoard();
     }
     
     private void createBoard() {
-        Sequin[][] sequinArray = this.thisGame.getSequinArray();
-        for (int row = 0; row < sequinArray.length; row++) {
-            for (int col = 0; col < sequinArray[row].length; col++) {
-                score4JPanel.add(sequinArray[row][col].getSequin());
+        this.playerInfoLabel.setText("Welcome back "+this.thisGame.getPlayer().getPname()+"!");
+        this.seqPosition = new ArrayList<JLabel>();
+        this.seqPosition.add(0, null);
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 7; col++) {
+                int index = (row + 1) * (col + 1);
+                this.seqPosition.add(index, new JLabel(new ImageIcon(getClass().getResource("/Assets/empty_seq.png"))));
+                this.score4JPanel.add((Component) seqPosition.get(index));
             }
         }
-        Component[] comp = score4JPanel.getComponents();
         pack();
     }
 
@@ -81,13 +86,19 @@ public class Score4_Game extends javax.swing.JFrame {
         score4JPanel = new javax.swing.JPanel();
         inGameMenu = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
-        Edit = new javax.swing.JMenu();
+        newGameMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        ExitMenuItem = new javax.swing.JMenuItem();
+        HelpMenu = new javax.swing.JMenu();
+        howToMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Score4");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Assets/icon.png")).getImage());
-        setLocation(new java.awt.Point(450, 200));
+        setLocation(new java.awt.Point(0, 0));
         setResizable(false);
 
         playerInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -244,7 +255,7 @@ public class Score4_Game extends javax.swing.JFrame {
 
         infoTimeSeperator.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Connect4Board.png"))); // NOI18N
+        score4Board.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/board.png"))); // NOI18N
 
         score4JPanel.setOpaque(false);
         score4JPanel.setPreferredSize(new java.awt.Dimension(640, 480));
@@ -278,10 +289,50 @@ public class Score4_Game extends javax.swing.JFrame {
         );
 
         FileMenu.setText("File");
+
+        newGameMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newGameMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/new_game.png"))); // NOI18N
+        newGameMenuItem.setText("New Game");
+        newGameMenuItem.setToolTipText("Click to start a new game!");
+        newGameMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameMenuItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(newGameMenuItem);
+        FileMenu.add(jSeparator1);
+
+        ExitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        ExitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/exit.png"))); // NOI18N
+        ExitMenuItem.setText("Exit");
+        ExitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMenuItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(ExitMenuItem);
+
         inGameMenu.add(FileMenu);
 
-        Edit.setText("Edit");
-        inGameMenu.add(Edit);
+        HelpMenu.setText("Help");
+
+        howToMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        howToMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/question.png"))); // NOI18N
+        howToMenuItem.setText("How to play");
+        HelpMenu.add(howToMenuItem);
+        HelpMenu.add(jSeparator2);
+
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/info.png"))); // NOI18N
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        HelpMenu.add(aboutMenuItem);
+
+        inGameMenu.add(HelpMenu);
 
         setJMenuBar(inGameMenu);
 
@@ -298,11 +349,10 @@ public class Score4_Game extends javax.swing.JFrame {
                 .addComponent(timePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(buttonsBoardSeperator, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(columnButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,46 +376,74 @@ public class Score4_Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void col1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col1ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(0, this.thisGame.getPlayer().getpIcon());
+        int sequin = thisGame.putSequinInPos(0, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 0);
     }//GEN-LAST:event_col1ButtonActionPerformed
 
     private void col2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col2ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(1, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(1, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 1);
     }//GEN-LAST:event_col2ButtonActionPerformed
 
     private void col3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col3ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(2, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(2, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 2);
     }//GEN-LAST:event_col3ButtonActionPerformed
 
     private void col4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col4ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(3, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(3, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 3);
     }//GEN-LAST:event_col4ButtonActionPerformed
 
     private void col5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col5ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(4, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(4, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 4);
     }//GEN-LAST:event_col5ButtonActionPerformed
 
     private void col6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col6ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(5, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(5, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 5);
     }//GEN-LAST:event_col6ButtonActionPerformed
 
     private void col7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col7ButtonActionPerformed
-        Sequin sequin = thisGame.putSequinInPos(6, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin);
+        int sequin = thisGame.putSequinInPos(6, this.thisGame.getPlayer().getpIcon());
+        drawSequinInBoard(sequin, 6);
     }//GEN-LAST:event_col7ButtonActionPerformed
+
+    private void ExitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuItemActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitMenuItemActionPerformed
+
+    private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameMenuItemActionPerformed
+        // TODO add your handling code here:
+        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to create a new game?", 
+                "New Game?", JOptionPane.YES_NO_OPTION);
         
-    private void drawSequinInBoard(Sequin sequin) {
+        if (confirmation == JOptionPane.YES_OPTION) {
+           new MainGUI().setVisible(true);
+           dispose();
+        }
+    }//GEN-LAST:event_newGameMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        // TODO add your handling code here:
+        new about(this, false).setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
         
+    private void drawSequinInBoard(int row, int col) {
+        //TODO!!
+        int pos = (row + 1) * (col + 1);
+        JLabel thisPos = (JLabel) this.seqPosition.get(pos);
+        thisPos.setIcon(this.thisGame.getPlayer().getpIcon());
+        pack();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Edit;
+    private javax.swing.JMenuItem ExitMenuItem;
     private javax.swing.JMenu FileMenu;
+    private javax.swing.JMenu HelpMenu;
+    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JSeparator buttonsBoardSeperator;
     private javax.swing.JButton col1Button;
     private javax.swing.JButton col2Button;
@@ -381,10 +459,14 @@ public class Score4_Game extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator colSeperator5;
     private javax.swing.JToolBar.Separator colSeperator6;
     private javax.swing.JToolBar columnButtons;
+    private javax.swing.JMenuItem howToMenuItem;
     private javax.swing.JMenuBar inGameMenu;
     private javax.swing.JSeparator infoBoardSeperator;
     private javax.swing.JSeparator infoTimeSeperator;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem newGameMenuItem;
     private javax.swing.JLabel playerInfoLabel;
     private javax.swing.JPanel playerInfoPanel;
     private javax.swing.JLabel score4Board;

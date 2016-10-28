@@ -37,13 +37,6 @@ public class Game {
     
     public void startGame() {
         startTimer();
-        
-        //testing ONLY
-        for (int i =0; i < this.score4Sequin.length; i++) {
-            for (int j = 0; j < this.score4Sequin[i].length; j++) {
-                this.score4Sequin[i][j] = (new Sequin(i, j, new ImageIcon(getClass().getResource("/Assets/green_player.png"))));
-            }
-        }
     }
 
     public void startTimer() {
@@ -71,13 +64,16 @@ public class Game {
         return turn;
     }
     
-    public Sequin putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
+    //public Sequin putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
+    public int putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
         for (int row = 0; row < this.score4Sequin.length; row++) {
             if (this.score4Sequin[row][columnInBoard] == null) {
-                return this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
+                //return this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
+                this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
+                return row;
             }
         }
-        return null;
+        return -1;
     }
     
     public Sequin getSequin (int row, int column) {

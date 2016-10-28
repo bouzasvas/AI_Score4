@@ -70,7 +70,13 @@ public class MainGUI extends javax.swing.JFrame {
         description2Label = new javax.swing.JLabel();
         pregameMenu = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
-        EditMenu = new javax.swing.JMenu();
+        newGameMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        ExitMenuItem = new javax.swing.JMenuItem();
+        HelpMenu = new javax.swing.JMenu();
+        howToMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Score4 Pre-Game");
@@ -182,10 +188,45 @@ public class MainGUI extends javax.swing.JFrame {
         description2Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         FileMenu.setText("File");
+
+        newGameMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newGameMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/new_game.png"))); // NOI18N
+        newGameMenuItem.setText("New Game");
+        newGameMenuItem.setToolTipText("Click to start a new game!");
+        FileMenu.add(newGameMenuItem);
+        FileMenu.add(jSeparator1);
+
+        ExitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        ExitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/exit.png"))); // NOI18N
+        ExitMenuItem.setText("Exit");
+        ExitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMenuItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(ExitMenuItem);
+
         pregameMenu.add(FileMenu);
 
-        EditMenu.setText("Edit");
-        pregameMenu.add(EditMenu);
+        HelpMenu.setText("Help");
+
+        howToMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        howToMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/question.png"))); // NOI18N
+        howToMenuItem.setText("How to play");
+        HelpMenu.add(howToMenuItem);
+        HelpMenu.add(jSeparator2);
+
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/info.png"))); // NOI18N
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        HelpMenu.add(aboutMenuItem);
+
+        pregameMenu.add(HelpMenu);
 
         setJMenuBar(pregameMenu);
 
@@ -272,6 +313,16 @@ public class MainGUI extends javax.swing.JFrame {
         redPlayer.doClick();
     }//GEN-LAST:event_redPlayer_iconMouseClicked
 
+    private void ExitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuItemActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        // TODO add your handling code here:
+        new about(this, false).setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,17 +362,23 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel ColorLabel;
     private javax.swing.JLabel DifficultyLabel;
     private javax.swing.JComboBox<String> DifficultyList;
-    private javax.swing.JMenu EditMenu;
+    private javax.swing.JMenuItem ExitMenuItem;
     private javax.swing.JMenu FileMenu;
+    private javax.swing.JMenu HelpMenu;
     private javax.swing.JLabel Img;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JTextField NameText;
     private javax.swing.JButton START_button;
+    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.ButtonGroup colorGroupRadio;
     private javax.swing.JLabel description1Label;
     private javax.swing.JLabel description2Label;
     private javax.swing.JRadioButton greenPlayer;
     private javax.swing.JLabel greenPlayer_icon;
+    private javax.swing.JMenuItem howToMenuItem;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem newGameMenuItem;
     private javax.swing.JPanel playerOptions;
     private javax.swing.JMenuBar pregameMenu;
     private javax.swing.JRadioButton redPlayer;
