@@ -26,7 +26,7 @@ public class Score4_Game extends javax.swing.JFrame {
      */
     private Game thisGame;
     public int time = 0;
-    private List seqPosition;
+    private JLabel[][] seqPosition;
     
     public Score4_Game(Game game) {
         initComponents();
@@ -38,13 +38,11 @@ public class Score4_Game extends javax.swing.JFrame {
     
     private void createBoard() {
         this.playerInfoLabel.setText("Welcome back "+this.thisGame.getPlayer().getPname()+"!");
-        this.seqPosition = new ArrayList<JLabel>();
-        this.seqPosition.add(0, null);
+        this.seqPosition = new JLabel[6][7];
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
-                int index = (row + 1) * (col + 1);
-                this.seqPosition.add(index, new JLabel(new ImageIcon(getClass().getResource("/Assets/empty_seq.png"))));
-                this.score4JPanel.add((Component) seqPosition.get(index));
+                this.seqPosition[row][col] = new JLabel(new ImageIcon(getClass().getResource("/Assets/empty_seq.png")));
+                this.score4JPanel.add(this.seqPosition[row][col]);
             }
         }
         pack();
@@ -433,8 +431,7 @@ public class Score4_Game extends javax.swing.JFrame {
         
     private void drawSequinInBoard(int row, int col) {
         //TODO!!
-        int pos = (row + 1) * (col + 1);
-        JLabel thisPos = (JLabel) this.seqPosition.get(pos);
+        JLabel thisPos = this.seqPosition[row][col];
         thisPos.setIcon(this.thisGame.getPlayer().getpIcon());
         pack();
     }
