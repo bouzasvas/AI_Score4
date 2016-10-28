@@ -7,6 +7,7 @@ package Score4_AI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,11 +24,14 @@ public class Game {
     private Random randomTurn = new Random();
     private int turn; //1 is player, 0 is cpu
     private JLabel timeLabel;
-    private Sequin[][] score4Sequin;
+    private int[][] board;
     
     public Game() {
         this.turn = randomTurn.nextInt(2);
-        this.score4Sequin = new Sequin[6][7];
+        this.board = new int[6][7];
+        for (int[] row : this.board) {
+            Arrays.fill(row, -1);
+        }
     }
     
     public Game(Player player, Player cpu) {
@@ -40,7 +44,7 @@ public class Game {
     }
     
     public void startGame() {
-        startTimer();
+       startTimer();
     }
 
     public void startTimer() {
@@ -71,11 +75,10 @@ public class Game {
     }
     
     //public Sequin putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
-    public int putSequinInPos(int columnInBoard, ImageIcon sequinIcon) {
-        for (int row = 0; row < this.score4Sequin.length; row++) {
-            if (this.score4Sequin[row][columnInBoard] == null) {
-                //return this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
-                this.score4Sequin[row][columnInBoard] = new Sequin(row, columnInBoard, player.getpIcon());
+    public int putSequinInPos(int columnInBoard) {
+        for (int row = this.board.length-1; row >= 0; row--) {
+            if (this.board[row][columnInBoard] == -1) {
+                this.board[row][columnInBoard] = 1;
                 return row;
             }
         }
@@ -87,12 +90,12 @@ public class Game {
         return false;
     }
     
-    public Sequin getSequin (int row, int column) {
-        return this.score4Sequin[row][column];
+    public int getBoardCell (int row, int column) {
+        return this.board[row][column];
     }
     
-    public Sequin[][] getSequinArray() {
-        return this.score4Sequin;
+    public int[][] getBoard () {
+        return this.board;
     }
     
     public void setJLabel(JLabel label) {

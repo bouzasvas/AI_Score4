@@ -7,12 +7,10 @@ package Score4_GUI;
 
 import Score4_AI.Game;
 import Score4_AI.Player;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -47,7 +45,7 @@ public class Score4_Game extends javax.swing.JFrame {
         if (whosTurn == 0) {
             this.playerInfoLabel.setText(this.thisGame.getCpuTurnMsg());
             Random r = new Random();
-            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer());
+            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
         } else {
             this.playerInfoLabel.setText(this.thisGame.getPlayerTurnMsg());
         }
@@ -391,38 +389,38 @@ public class Score4_Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void col1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col1ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(0, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 0, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(0);
+        drawSequinInBoard(sequin, 0, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col1ButtonActionPerformed
 
     private void col2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col2ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(1, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 1, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(1);
+        drawSequinInBoard(sequin, 1, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col2ButtonActionPerformed
 
     private void col3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col3ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(2, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 2, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(2);
+        drawSequinInBoard(sequin, 2, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col3ButtonActionPerformed
 
     private void col4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col4ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(3, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 3, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(3);
+        drawSequinInBoard(sequin, 3, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col4ButtonActionPerformed
 
     private void col5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col5ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(4, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 4, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(4);
+        drawSequinInBoard(sequin, 4, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col5ButtonActionPerformed
 
     private void col6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col6ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(5, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 5, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(5);
+        drawSequinInBoard(sequin, 5, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col6ButtonActionPerformed
 
     private void col7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col7ButtonActionPerformed
-        int sequin = thisGame.putSequinInPos(6, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 6, this.thisGame.getPlayer());
+        int sequin = thisGame.putSequinInPos(6);
+        drawSequinInBoard(sequin, 6, this.thisGame.getPlayer(), (JButton) evt.getSource());
     }//GEN-LAST:event_col7ButtonActionPerformed
 
     private void ExitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuItemActionPerformed
@@ -446,12 +444,16 @@ public class Score4_Game extends javax.swing.JFrame {
         new about(this, false).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void drawSequinInBoard(int row, int col, Player p) {
+    private void drawSequinInBoard(int row, int col, Player p, JButton pressedButton) {
         //TODO!!
-        JLabel thisPos = this.seqPosition[row][col];
-        thisPos.setIcon(p.getpIcon());
-        pack();
-        nextMove();
+        if (row == -1) {
+            pressedButton.setEnabled(false);
+        } else {
+            JLabel thisPos = this.seqPosition[row][col];
+            thisPos.setIcon(p.getpIcon());
+            pack();
+            nextMove();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

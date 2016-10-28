@@ -11,6 +11,9 @@ import java.awt.Desktop;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
@@ -186,6 +189,11 @@ public class MainGUI extends javax.swing.JFrame {
         description2Label.setText("here");
         description2Label.setToolTipText("Link to Youtube Video");
         description2Label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        description2Label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                description2LabelMouseClicked(evt);
+            }
+        });
 
         FileMenu.setText("File");
 
@@ -322,6 +330,15 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         new about(this, false).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void description2LabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_description2LabelMouseClicked
+        try {
+            // TODO add your handling code here:
+            open(new URI("https://www.youtube.com/watch?v=mNzksM72o94"));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_description2LabelMouseClicked
 
     /**
      * @param args the command line arguments
