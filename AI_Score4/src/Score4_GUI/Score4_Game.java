@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Score4_GUI;
 
 import Score4_AI.Game;
+import Score4_AI.Player;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,17 +28,33 @@ public class Score4_Game extends javax.swing.JFrame {
     private Game thisGame;
     public int time = 0;
     private JLabel[][] seqPosition;
-    
+
     public Score4_Game(Game game) {
         initComponents();
         this.thisGame = game;
         this.thisGame.setJLabel(timeLiveLabel);
+        startGame();
+    }
+
+    private void startGame() {
         this.thisGame.startGame();
         createBoard();
+        nextMove();
     }
-    
+
+    private void nextMove() {
+        int whosTurn = this.thisGame.whosTurn();
+        if (whosTurn == 0) {
+            this.playerInfoLabel.setText(this.thisGame.getCpuTurnMsg());
+            Random r = new Random();
+            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer());
+        } else {
+            this.playerInfoLabel.setText(this.thisGame.getPlayerTurnMsg());
+        }
+    }
+
     private void createBoard() {
-        this.playerInfoLabel.setText("Welcome back "+this.thisGame.getPlayer().getPname()+"!");
+        this.playerInfoLabel.setText("Welcome back " + this.thisGame.getPlayer().getPname() + "!");
         this.seqPosition = new JLabel[6][7];
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
@@ -99,7 +116,7 @@ public class Score4_Game extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
 
-        playerInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        playerInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         playerInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout playerInfoPanelLayout = new javax.swing.GroupLayout(playerInfoPanel);
@@ -375,37 +392,37 @@ public class Score4_Game extends javax.swing.JFrame {
 
     private void col1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col1ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(0, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 0);
+        drawSequinInBoard(sequin, 0, this.thisGame.getPlayer());
     }//GEN-LAST:event_col1ButtonActionPerformed
 
     private void col2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col2ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(1, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 1);
+        drawSequinInBoard(sequin, 1, this.thisGame.getPlayer());
     }//GEN-LAST:event_col2ButtonActionPerformed
 
     private void col3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col3ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(2, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 2);
+        drawSequinInBoard(sequin, 2, this.thisGame.getPlayer());
     }//GEN-LAST:event_col3ButtonActionPerformed
 
     private void col4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col4ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(3, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 3);
+        drawSequinInBoard(sequin, 3, this.thisGame.getPlayer());
     }//GEN-LAST:event_col4ButtonActionPerformed
 
     private void col5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col5ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(4, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 4);
+        drawSequinInBoard(sequin, 4, this.thisGame.getPlayer());
     }//GEN-LAST:event_col5ButtonActionPerformed
 
     private void col6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col6ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(5, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 5);
+        drawSequinInBoard(sequin, 5, this.thisGame.getPlayer());
     }//GEN-LAST:event_col6ButtonActionPerformed
 
     private void col7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_col7ButtonActionPerformed
         int sequin = thisGame.putSequinInPos(6, this.thisGame.getPlayer().getpIcon());
-        drawSequinInBoard(sequin, 6);
+        drawSequinInBoard(sequin, 6, this.thisGame.getPlayer());
     }//GEN-LAST:event_col7ButtonActionPerformed
 
     private void ExitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuItemActionPerformed
@@ -415,12 +432,12 @@ public class Score4_Game extends javax.swing.JFrame {
 
     private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameMenuItemActionPerformed
         // TODO add your handling code here:
-        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to create a new game?", 
+        int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to create a new game?",
                 "New Game?", JOptionPane.YES_NO_OPTION);
-        
+
         if (confirmation == JOptionPane.YES_OPTION) {
-           new MainGUI().setVisible(true);
-           dispose();
+            new MainGUI().setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_newGameMenuItemActionPerformed
 
@@ -428,14 +445,15 @@ public class Score4_Game extends javax.swing.JFrame {
         // TODO add your handling code here:
         new about(this, false).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
-        
-    private void drawSequinInBoard(int row, int col) {
+
+    private void drawSequinInBoard(int row, int col, Player p) {
         //TODO!!
         JLabel thisPos = this.seqPosition[row][col];
-        thisPos.setIcon(this.thisGame.getPlayer().getpIcon());
+        thisPos.setIcon(p.getpIcon());
         pack();
+        nextMove();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ExitMenuItem;
     private javax.swing.JMenu FileMenu;

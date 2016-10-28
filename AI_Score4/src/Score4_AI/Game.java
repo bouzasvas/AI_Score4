@@ -18,6 +18,7 @@ import javax.swing.Timer;
  */
 public class Game {
     private Player player, cpu;
+    private String welcomeMsg, playerTurnMsg, cpuTurnMsg;
     private int gameTime = 0;
     private Random randomTurn = new Random();
     private int turn; //1 is player, 0 is cpu
@@ -25,7 +26,7 @@ public class Game {
     private Sequin[][] score4Sequin;
     
     public Game() {
-        this.turn = randomTurn.nextInt(1);
+        this.turn = randomTurn.nextInt(2);
         this.score4Sequin = new Sequin[6][7];
     }
     
@@ -33,6 +34,9 @@ public class Game {
         this();
         this.player = player;
         this.cpu = cpu;
+        welcomeMsg = "Welcome back " + player.getPname() + "!";
+        playerTurnMsg = welcomeMsg + " It's your turn!";
+        cpuTurnMsg = welcomeMsg + " It's computer's turn!";
     }
     
     public void startGame() {
@@ -51,12 +55,14 @@ public class Game {
         timer.start();
     }
     
-    public int whosNext() {
+    public int whosTurn() {
         if (turn == 0) {
-            return 1;
+            turn = 1;
+            return 0;
         }
         else {
-            return 0;
+            turn = 0;
+            return 1;
         }
     }
     
@@ -76,6 +82,11 @@ public class Game {
         return -1;
     }
     
+    public boolean isTerminal() {
+        //TODO
+        return false;
+    }
+    
     public Sequin getSequin (int row, int column) {
         return this.score4Sequin[row][column];
     }
@@ -90,5 +101,21 @@ public class Game {
     
     public Player getPlayer() {
         return this.player;
+    }
+    
+    public Player getCpuPlayer() {
+        return this.cpu;
+    }
+    
+    public String getWelcomeMsg() {
+        return this.welcomeMsg;
+    }
+    
+    public String getPlayerTurnMsg() {
+        return this.playerTurnMsg;
+    }
+    
+    public String getCpuTurnMsg() {
+        return this.cpuTurnMsg;
     }
 }
