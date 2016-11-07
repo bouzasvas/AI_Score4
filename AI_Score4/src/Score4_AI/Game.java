@@ -19,11 +19,14 @@ import javax.swing.Timer;
  */
 public class Game {
     private Player player, cpu;
+    
     private String welcomeMsg, playerTurnMsg, cpuTurnMsg;
     private int gameTime = 0;
     private Random randomTurn = new Random();
     private int turn; //1 is player, 0 is cpu
     private JLabel timeLabel;
+    
+    //AI Variables
     private int[][] board;
     
     public Game() {
@@ -59,6 +62,18 @@ public class Game {
         timer.start();
     }
     
+    public void nextMove(JLabel playerInfoLabel) {
+        int whosTurn = whosTurn();
+        if (whosTurn == 0) {
+            playerInfoLabel.setText(getCpuTurnMsg());
+            AI_minimax.max(board);
+//            Random r = new Random();
+//            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
+        } else {
+            playerInfoLabel.setText(getPlayerTurnMsg());
+        }
+    }
+    
     public int whosTurn() {
         if (turn == 0) {
             turn = 1;
@@ -83,11 +98,6 @@ public class Game {
             }
         }
         return -1;
-    }
-    
-    public boolean isTerminal() {
-        //TODO
-        return false;
     }
     
     public int getBoardCell (int row, int column) {

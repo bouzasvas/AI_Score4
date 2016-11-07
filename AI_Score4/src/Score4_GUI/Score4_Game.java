@@ -5,6 +5,7 @@
  */
 package Score4_GUI;
 
+import Score4_AI.AI_minimax;
 import Score4_AI.Game;
 import Score4_AI.Player;
 import java.awt.event.KeyEvent;
@@ -37,18 +38,7 @@ public class Score4_Game extends javax.swing.JFrame {
     private void startGame() {
         this.thisGame.startGame();
         createBoard();
-        nextMove();
-    }
-
-    private void nextMove() {
-        int whosTurn = this.thisGame.whosTurn();
-        if (whosTurn == 0) {
-            this.playerInfoLabel.setText(this.thisGame.getCpuTurnMsg());
-            Random r = new Random();
-            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
-        } else {
-            this.playerInfoLabel.setText(this.thisGame.getPlayerTurnMsg());
-        }
+        this.thisGame.nextMove(playerInfoLabel);
     }
 
     private void createBoard() {
@@ -448,11 +438,12 @@ public class Score4_Game extends javax.swing.JFrame {
         //TODO!!
         if (row == -1) {
             pressedButton.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "This column is filled!", "Full column", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JLabel thisPos = this.seqPosition[row][col];
             thisPos.setIcon(p.getpIcon());
             pack();
-            nextMove();
+            this.thisGame.nextMove(playerInfoLabel);
         }
     }
 
