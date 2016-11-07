@@ -22,7 +22,7 @@ public class Player {
    private String pname = "CPU";
    private ImageIcon pIcon = null;
    
-   private int difficultyDepth;
+   public static int difficultyDepth;
 
    
    public Player() {

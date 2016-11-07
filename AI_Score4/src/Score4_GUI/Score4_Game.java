@@ -36,7 +36,8 @@ public class Score4_Game extends javax.swing.JFrame {
     private void startGame() {
         this.thisGame.startGame();
         createBoard();
-        this.thisGame.nextMove(playerInfoLabel);
+        int[] move = this.thisGame.nextMove(playerInfoLabel);
+        makeTheMoveOnBoard(move);
     }
 
     private void createBoard() {
@@ -432,16 +433,24 @@ public class Score4_Game extends javax.swing.JFrame {
         new about(this, false).setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
+    private void makeTheMoveOnBoard(int[] move) {
+        if (move != null) {
+            drawSequinInBoard(move[0], move[1], this.thisGame.getCpuPlayer(), null);
+        }
+    }
+    
     private void drawSequinInBoard(int row, int col, Player p, JButton pressedButton) {
         //TODO!!
         if (row == -1) {
-            pressedButton.setEnabled(false);
-            JOptionPane.showMessageDialog(this, "This column is filled!", "Full column", JOptionPane.INFORMATION_MESSAGE);
+            if (pressedButton !=null) {
+                pressedButton.setEnabled(false);
+                JOptionPane.showMessageDialog(this, "This column is filled!", "Full column", JOptionPane.INFORMATION_MESSAGE);
+            }    
         } else {
             JLabel thisPos = this.seqPosition[row][col];
             thisPos.setIcon(p.getpIcon());
             pack();
-            this.thisGame.nextMove(playerInfoLabel);
+            int [] move = this.thisGame.nextMove(playerInfoLabel);
         }
     }
 

@@ -13,14 +13,20 @@ import java.util.ArrayList;
  * @author Vassilis
  */
 public class AI_minimax {
-    public static int[] availableRow = {5, 5, 5, 5, 5, 5, 5};
     
-    public static void max(State state, int depth) {
+    public static int[] max(State state, int depth) {
+        if (state.isTerminal() || depth == Player.difficultyDepth) {
+            
+        }
         
+        return null;
     }
     
-    public static void min(State state, int depth) {
-        
+    public static int[] min(State state, int depth) {
+        if (state.isTerminal() || depth == Player.difficultyDepth) {
+            
+        }
+        return null;
     }
     
     

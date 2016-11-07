@@ -35,7 +35,7 @@ public class Game {
     private State initState;
     
     public Game() {
-        this.turn = randomTurn.nextInt(2);
+        this.turn = randomTurn.nextInt(2)==0 ? Game.AI : Game.PLAYER;
         this.initState = new State(new int[6][7]);
         for (int[] row : this.initState.getBoard()) {
             Arrays.fill(row, Game.EMPTY);
@@ -67,15 +67,16 @@ public class Game {
         timer.start();
     }
     
-    public void nextMove(JLabel playerInfoLabel) {
+    public int[] nextMove(JLabel playerInfoLabel) {
         int whosTurn = whosTurn();
         if (whosTurn == Game.AI) {
-            playerInfoLabel.setText(getCpuTurnMsg());
-            AI_minimax.max(initState, player.getDifficultyDepth());
+            playerInfoLabel.setText(getCpuTurnMsg());     
+            return AI_minimax.max(initState, 0);
 //            Random r = new Random();
 //            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
+            return null;
         }
     }
     
