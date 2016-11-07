@@ -15,25 +15,15 @@ import java.util.ArrayList;
 public class AI_minimax {
     public static int[] availableRow = {5, 5, 5, 5, 5, 5, 5};
     
-    public static void max(int[][] board) {
+    public static void max(State state, int depth) {
         
     }
     
-    public static void min(int[][] board) {
+    public static void min(State state, int depth) {
         
     }
     
-    public static List getChildren(int[][] board, int depth) {
-        ArrayList<int[][]> children = new ArrayList<int[][]>();
-        
-        for (int col : availableRow) {
-            if (col != 0) {
-                int[][] child
-                children.add()
-            }
-        }
-        return null;
-    }
+    
     
     
 }

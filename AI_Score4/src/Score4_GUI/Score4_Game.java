@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Score4_GUI;
-
-import Score4_AI.AI_minimax;
 import Score4_AI.Game;
 import Score4_AI.Player;
 import java.awt.event.KeyEvent;

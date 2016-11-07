@@ -20,8 +20,10 @@ public class Player {
    //Class Fields
    private boolean ai = true;
    private String pname = "CPU";
-   private String pdifficulty = null;
    private ImageIcon pIcon = null;
+   
+   private int difficultyDepth;
+
    
    public Player() {
        super();
@@ -30,13 +32,27 @@ public class Player {
    public Player(JPanel parent, boolean ai, String pname, String pdifficulty, String filePath) {
        this.ai = ai;
        this.pname = pname;
-       this.pdifficulty = pdifficulty;
        this.parentWindow = parent;
        try {
            this.pIcon = new ImageIcon(getClass().getResource(filePath));
        }
        catch (Exception fileEx) {
            JOptionPane.showMessageDialog(parentWindow, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+       }
+       
+       switch (pdifficulty) {
+           case "Easy":
+               this.difficultyDepth = 3;
+               break;
+           case "Medium":
+               this.difficultyDepth = 4;
+               break;
+           case "Hard":
+               this.difficultyDepth = 5;
+               break;
+           default:
+               this.difficultyDepth = -1;
+               break;
        }
    }
    
@@ -74,5 +90,7 @@ public class Player {
         this.pIcon = pIcon;
     }
    
-   
+    public int getDifficultyDepth() {
+         return difficultyDepth;
+     }
 }

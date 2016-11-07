@@ -15,7 +15,9 @@ import java.util.List;
 public class State {
 
     private int[][] board;
-    private State 
+
+    //Min-Max pruning
+    private int a, b, value;
 
     //int array that contains the empty columns
     private int[] availableRows = {5, 5, 5, 5, 5, 5, 5};
@@ -45,35 +47,35 @@ public class State {
         this.availableRows = availableRows;
     }
 
-    public boolean makeMove() {
-        for (int column = 0; column < board[0].length; column++) {
-            int row = this.availableRows[column];
-            
-            if (row != 0) {    
-                this.board[row][column] = 0;
-                return true;
-            }
+    public State makeMove(int col, int turn) {
+        int[][] boardCopy = this.board;
+        int[] availableRowsCopy = this.availableRows;
+
+        int row = this.availableRows[col];
+
+        if (row != 0) {
+            if (turn == Game.AI)
+                boardCopy[row][col] = Game.AI;
+            else
+                boardCopy[row][col] = Game.PLAYER;
+            availableRowsCopy[col] = row - 1;
         }
-        return false;
+        
+        State boardChild = new State(boardCopy, availableRowsCopy);
+        return boardChild;
+    }
+
+    public ArrayList<State> getChildren(int turn) {
+        ArrayList children = new ArrayList<State>();
+
+        for (int column = 0; column < board[0].length; column++) {
+            children.add(this.makeMove(column, turn));
+        }
+        return children;
     }
     
-    //public List getChildren() {
-    public State getChild() {
-        //List children = new ArrayList<State>();
-        //State child = new State(this.board, this.availableRows);
-        
-//        if (child.makeMove()) {
-//            children.add(child);
-//            return child.getChildren();
-//        } 
-        State child = this.getChild();
-        if (child.getChild() == null){
-            if(child.getValue)
-            return child;
-        }
-            
-        
-        
-        return null;
+    //TODO
+    public int evaluate() {
+        return -1;
     }
 }
