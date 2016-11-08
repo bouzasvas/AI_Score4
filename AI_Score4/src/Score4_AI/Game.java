@@ -76,6 +76,7 @@ public class Game {
 //            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
+            AI_minimax.max(initState, 0);
             return null;
         }
     }
@@ -97,10 +98,16 @@ public class Game {
     
     public int putSequinInPos(int columnInBoard) {
         for (int row = this.initState.getBoard().length-1; row >= 0; row--) {
-            if (this.initState.getBoard()[row][columnInBoard] == Game.EMPTY) {
-                this.initState.getBoard()[row][columnInBoard] = Game.PLAYER;
-                return row;
-            }
+            int[][] newMove = this.initState.getBoard();
+//            if (this.initState.getBoard()[row][columnInBoard] == Game.EMPTY) {
+//                this.initState.getBoard()[row][columnInBoard] = Game.PLAYER;
+//                return row;
+//            }
+              if (newMove[row][columnInBoard] == Game.EMPTY) {
+                  newMove[row][columnInBoard] = Game.PLAYER;
+                  initState.setBoard(newMove);
+                  return row;
+              }
         }
         return -1;
     }

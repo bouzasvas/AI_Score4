@@ -451,6 +451,7 @@ public class Score4_Game extends javax.swing.JFrame {
             thisPos.setIcon(p.getpIcon());
             pack();
             int [] move = this.thisGame.nextMove(playerInfoLabel);
+            makeTheMoveOnBoard(move);
         }
     }
 

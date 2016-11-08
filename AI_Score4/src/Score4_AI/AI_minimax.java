@@ -7,6 +7,7 @@ package Score4_AI;
 
 import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
