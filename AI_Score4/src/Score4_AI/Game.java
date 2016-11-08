@@ -32,12 +32,12 @@ public class Game {
     private JLabel timeLabel;
     
     //AI Variables
-    private State initState;
+    private State currentState;
     
     public Game() {
         this.turn = randomTurn.nextInt(2)==0 ? Game.AI : Game.PLAYER;
-        this.initState = new State(new int[6][7]);
-        for (int[] row : this.initState.getBoard()) {
+        this.currentState = new State(new int[6][7]);
+        for (int[] row : this.currentState.getBoard()) {
             Arrays.fill(row, Game.EMPTY);
         }
     }
@@ -71,12 +71,11 @@ public class Game {
         int whosTurn = whosTurn();
         if (whosTurn == Game.AI) {
             playerInfoLabel.setText(getCpuTurnMsg());     
-            return AI_minimax.max(initState, 0);
+            return AI_minimax.max(currentState, 0);
 //            Random r = new Random();
 //            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
-            AI_minimax.max(initState, 0);
             return null;
         }
     }
@@ -97,15 +96,15 @@ public class Game {
     }
     
     public int putSequinInPos(int columnInBoard) {
-        for (int row = this.initState.getBoard().length-1; row >= 0; row--) {
-            int[][] newMove = this.initState.getBoard();
+        for (int row = this.currentState.getBoard().length-1; row >= 0; row--) {
+            int[][] newMove = this.currentState.getBoard();
 //            if (this.initState.getBoard()[row][columnInBoard] == Game.EMPTY) {
 //                this.initState.getBoard()[row][columnInBoard] = Game.PLAYER;
 //                return row;
 //            }
               if (newMove[row][columnInBoard] == Game.EMPTY) {
                   newMove[row][columnInBoard] = Game.PLAYER;
-                  initState.setBoard(newMove);
+                  currentState.setBoard(newMove);
                   return row;
               }
         }
