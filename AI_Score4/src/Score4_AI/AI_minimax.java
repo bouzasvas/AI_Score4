@@ -17,7 +17,8 @@ public class AI_minimax {
     
     public static int[] max(State state, int depth) {
         if (state.isTerminal() || depth == Player.difficultyDepth) {
-            
+            System.out.println("Terminal!");
+            //System.exit(0);
         }
         
         return null;

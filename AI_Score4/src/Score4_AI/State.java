@@ -105,13 +105,6 @@ public class State {
             }
 
         }
-//        for (int index = 0; index < subarrays.size(); index++) {
-//            for (int[] a : (int[][]) subarrays.get(index)) {
-//                System.out.println(Arrays.toString(a));
-//            }
-//           System.out.println("*******"); 
-//        }
-
     }
 
     public boolean isTerminal() {
