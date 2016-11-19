@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
@@ -53,6 +52,7 @@ public class Game {
     
     public void startGame() {
        startTimer();
+       AI_minimax.maxDepth = player.getDifficultyDepth();
     }
 
     public void startTimer() {
@@ -70,10 +70,14 @@ public class Game {
     public int[] nextMove(JLabel playerInfoLabel) {
         int whosTurn = whosTurn();
         if (whosTurn == Game.AI) {
-            playerInfoLabel.setText(getCpuTurnMsg());     
-            return AI_minimax.max(currentState, 0);
-//            Random r = new Random();
-//            drawSequinInBoard(r.nextInt(6), r.nextInt(7), this.thisGame.getCpuPlayer(), null);
+            playerInfoLabel.setText(getCpuTurnMsg());
+            
+            //call the max function for the selected difficulty level and return
+            //the valid move to Score4Game.java class for making the move
+            
+            currentState = AI_minimax.max(currentState, 0);
+            return currentState.getMove();
+            //return AI_minimax.max(currentState, 0).getMove();
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
             return null;

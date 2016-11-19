@@ -8,33 +8,60 @@ package Score4_AI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Vassilis
  */
-public class State {
+public class State implements Cloneable {
 
     private int[][] board;
 
     //Min-Max pruning
     private int a, b, value;
+    
+    //int array for returning the move from MinMax function
+    private int[] move = {-1, -1};
 
     //int array that contains the empty columns
     private int[] availableRows = {5, 5, 5, 5, 5, 5, 5};
 
     //ArrayList which contains all the subarrays of board
-    private List subarrays = new ArrayList<int[][]>();
+    private List subarrays;
 
     public State(int[][] board) {
         this.board = board;
-//        splitBoard();
+        splitBoard();
     }
 
-    public State(int[][] board, int[] availableRows) {
+    public State(int[][] board, int[] availableRows, int[] rowCol) {
         this.board = board;
         this.availableRows = availableRows;
-//        splitBoard();
+        this.move = rowCol;
+        splitBoard();
+    }
+ 
+    //copy constructor
+    public State(State state) {
+        //copy each field
+        this.a = state.a;
+        this.b = state.b;
+        this.value = state.value;
+        
+        //copy the board
+        this.board = new int[6][7];
+        Arrays.copyOf(state.board, state.board.length);
+        
+        //copy the availableRows
+        this.availableRows = new int[7];
+        Arrays.copyOf(state.availableRows, state.availableRows.length);
+        
+        //call to local splitBoard to fill the local subarrays list
+        state.splitBoard();
+        this.subarrays = state.subarrays;
     }
 
     public int[][] getBoard() {
@@ -43,7 +70,7 @@ public class State {
 
     public void setBoard(int[][] board) {
         this.board = board;
-        splitBoard();
+//        splitBoard();
     }
 
     public int[] getAvailableRows() {
@@ -53,44 +80,97 @@ public class State {
     public void setAvailableRows(int[] availableRows) {
         this.availableRows = availableRows;
     }
+    
+    public int get_a() {
+        return a;
+    }
+
+    public void set_a(int a) {
+        this.a = a;
+    }
+
+    public int get_b() {
+        return b;
+    }
+
+    public void set_b(int b) {
+        this.b = b;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int[] getMove() {
+        return move;
+    }
+
+    public void setMove(int[] rowCol) {
+        this.move = rowCol;
+    }
 
     public State makeMove(int col, int turn) {
-        int[][] boardCopy = this.board;
-        int[] availableRowsCopy = this.availableRows;
+        
+        //Make copy of the original arrays to create the new State item
+//        int[][] boardCopy = new int[6][7];
+//        boardCopy = Arrays.copyOf(this.board, this.board.length);
+//        
+//        int[] availableRowsCopy = new int[7];
+//        availableRowsCopy = Arrays.copyOf(this.availableRows, this.availableRows.length);
+        
+        int[] rowCol = new int[2];
 
         int row = this.availableRows[col];
 
         if (row != -1) {
             if (turn == Game.AI) {
-                boardCopy[row][col] = Game.AI;
+                this.board[row][col] = Game.AI;
             } else {
-                boardCopy[row][col] = Game.PLAYER;
+                this.board[row][col] = Game.PLAYER;
             }
-            availableRowsCopy[col] = row - 1;
+            this.availableRows[col] = row - 1;
         }
-
-        State boardChild = new State(boardCopy, availableRowsCopy);
-        return boardChild;
+        
+        //set Row-Col of the last move
+        this.move[0] = row;
+        this.move[1] = col;
+        
+        return this;
     }
 
     public ArrayList<State> getChildren(int turn) {
         ArrayList children = new ArrayList<State>();
 
         for (int column = 0; column < board[0].length; column++) {
-            children.add(this.makeMove(column, turn));
+            //copy the current state
+            State child = new State(this);
+            
+            //produce the child and add them in arraylist
+            children.add(child.makeMove(column, turn));
         }
         return children;
     }
 
     //TODO
-    public int evaluate() {
-        return -1;
+    public int evaluate() {        
+//        for (int index = 0; index < subarrays.size(); index++) {
+//            int[][] subarray = (int[][]) subarrays.get(index);
+//            
+//        }
+        
+        Random r = new Random();
+        return r.nextInt();
     }
 
     private void splitBoard() {
-        if (subarrays.size() == 12) {
-            subarrays = new ArrayList<int[][]>();
-        }
+        subarrays = new ArrayList<int[][]>();
+//        if (subarrays.size() == 12) {
+//            subarrays = new ArrayList<int[][]>();
+//        }
         int[][] splittedBoard;
 
         for (int r = 5; r >= 3; r--) {
@@ -103,7 +183,6 @@ public class State {
                 }
                 subarrays.add(splittedBoard);
             }
-
         }
     }
 
