@@ -30,13 +30,15 @@ public class Score4_Game extends javax.swing.JFrame {
         initComponents();
         this.thisGame = game;
         this.thisGame.setJLabel(timeLiveLabel);
+        this.thisGame.setParentWindow(this);
+        this.thisGame.setPlayerInfoLabel(this.playerInfoLabel);
         startGame();
     }
 
     private void startGame() {
         this.thisGame.startGame();
         createBoard();
-        int[] move = this.thisGame.nextMove(playerInfoLabel);
+        int[] move = this.thisGame.nextMove();
         makeTheMoveOnBoard(move);
     }
 
@@ -450,7 +452,7 @@ public class Score4_Game extends javax.swing.JFrame {
             JLabel thisPos = this.seqPosition[row][col];
             thisPos.setIcon(p.getpIcon());
             pack();
-            int [] move = this.thisGame.nextMove(playerInfoLabel);
+            int [] move = this.thisGame.nextMove();
             makeTheMoveOnBoard(move);
         }
     }

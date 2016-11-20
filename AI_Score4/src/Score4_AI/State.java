@@ -20,6 +20,9 @@ public class State implements Cloneable {
     
     //Father of State
     public State parent = null;
+    
+    //Check if player or CPU won this game
+    private int winner = Game.EMPTY;
 
     //Min-Max pruning
     private int a, b, value;
@@ -122,6 +125,10 @@ public class State implements Cloneable {
         this.move = rowCol;
     }
 
+    public int getWinner() {
+        return this.winner;
+    }
+    
     public State makeMove(int col, int turn) {
         
         //Make copy of the original arrays to create the new State item
@@ -242,17 +249,33 @@ public class State implements Cloneable {
                         sum_diag2 += sub[row][col];
                     }
                 }
-                if (Math.abs(sum_row) == 4 || Math.abs(sum_col) == 4) {
+//                if (Math.abs(sum_row) == 4 || Math.abs(sum_col) == 4) {
+//                    return true;
+//                }
+//                sum_row = 0;
+//                sum_col = 0;
+                if (sum_row == 4 || sum_col == 4) {
+                    this.winner = Game.AI;
                     return true;
                 }
-                sum_row = 0;
-                sum_col = 0;
+                else if (sum_row == -4 || sum_col == -4) {
+                    this.winner = Game.PLAYER;
+                    return true;
+                }
             }
             
 
-            if (Math.abs(sum_diag1) == 4 || Math.abs(sum_diag2) == 4) {
-                return true;
-            }
+//            if (Math.abs(sum_diag1) == 4 || Math.abs(sum_diag2) == 4) {
+//                return true;
+//            }
+                if (sum_diag1 == 4 || sum_diag2 == 4) {
+                    this.winner = Game.AI;
+                    return true;
+                }
+                else if (sum_diag1 == -4 || sum_diag2 == -4) {
+                    this.winner = Game.PLAYER;
+                    return true;
+                }
         }
         return false;
     }

@@ -5,11 +5,14 @@
  */
 package Score4_AI;
 
+import Score4_GUI.MainGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -23,12 +26,18 @@ public class Game {
     public static final int AI = 1;
     public static final int PLAYER = -1;
 
+    //Timer
+    Timer timer = null;
     
     private String welcomeMsg, playerTurnMsg, cpuTurnMsg;
     private int gameTime = 0;
     private Random randomTurn = new Random();
     private int turn;
+    
+    //Swing Components
+    private JFrame parentWindow;
     private JLabel timeLabel;
+    private JLabel playerInfoLabel;
     
     //AI Variables
     private State currentState;
@@ -56,7 +65,6 @@ public class Game {
     }
 
     public void startTimer() {
-        Timer timer = null;
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -67,7 +75,7 @@ public class Game {
         timer.start();
     }
     
-    public int[] nextMove(JLabel playerInfoLabel) {
+    public int[] nextMove() {
         int[] nextMoveArray = null;
         
         int whosTurn = whosTurn();
@@ -81,6 +89,8 @@ public class Game {
                     
             //currentState = AI_minimax.finalMove;
             nextMoveArray =  currentState.getMove();
+            
+            ifTerminalExit(currentState);
             //return AI_minimax.max(currentState, 0).getMove();
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
@@ -130,8 +140,47 @@ public class Game {
         return -1;
     }
     
+    private void ifTerminalExit(State currentState) {
+        String msg;
+        
+        if (currentState.isTerminal()) {
+            
+            if (currentState.getWinner() == Game.PLAYER) {
+                msg = player.getPname()+", you won this game :)";
+                this.playerInfoLabel.setText("YOU WON!!! :)");
+            }
+            else { 
+                msg = player.getPname() + ", you lost this game :(";
+                this.playerInfoLabel.setText("YOU LOST :(");
+            }
+                
+            //STOP the Timer
+            timer.stop();
+            
+            Object[] options = {"Yeah let\'s go!", "No thanks!"};
+            int returnedCode = JOptionPane.showOptionDialog(this.parentWindow, "Do you want to play again?", msg,
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            
+            if (returnedCode == 0) {
+                new MainGUI().setVisible(true);
+                parentWindow.dispose();
+            }
+            else {
+                System.exit(3);
+            }
+        }
+    }
+    
     public void setJLabel(JLabel label) {
         this.timeLabel = label;
+    }
+    
+    public void setParentWindow (JFrame parent) {
+        this.parentWindow = parent;
+    }
+    
+    public void setPlayerInfoLabel (JLabel label) {
+        this.playerInfoLabel = label;
     }
     
     public Player getPlayer() {
