@@ -90,7 +90,6 @@ public class Game {
             //currentState = AI_minimax.finalMove;
             nextMoveArray =  currentState.getMove();
             
-            ifTerminalExit(currentState);
             //return AI_minimax.max(currentState, 0).getMove();
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
@@ -105,6 +104,7 @@ public class Game {
         }
         System.out.println("--------------");
         
+        ifTerminalExit(currentState);
         return nextMoveArray;
     }
     
