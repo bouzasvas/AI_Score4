@@ -191,10 +191,9 @@ public class State implements Cloneable {
 
         
         splitBoard();
-        int totalValue = 0;
         for (int index = 0; index < subarrays.size(); index++) {
             int[][] subarray = (int[][]) subarrays.get(index);
-            totalValue += evalMiniArray(subarray);
+            this.value += evalMiniArray(subarray);
         }
 
 //        Random r = new Random();
@@ -274,10 +273,6 @@ public class State implements Cloneable {
                         totalMiniValue += sum_col;
                         break;
                 }
-                
-                
-                
-                
                
                 sum_row = 0;
                 sum_col = 0;
@@ -390,8 +385,7 @@ public class State implements Cloneable {
 //                if (Math.abs(sum_row) == 4 || Math.abs(sum_col) == 4) {
 //                    return true;
 //                }
-//                sum_row = 0;
-//                sum_col = 0;
+
                 if (sum_row == 4 || sum_col == 4) {
                     this.winner = Game.AI;
                     return true;
@@ -400,6 +394,8 @@ public class State implements Cloneable {
                     this.winner = Game.PLAYER;
                     return true;
                 }
+                sum_row = 0;
+                sum_col = 0;
             }
             
 

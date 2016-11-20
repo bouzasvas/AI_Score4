@@ -437,7 +437,12 @@ public class Score4_Game extends javax.swing.JFrame {
 
     private void makeTheMoveOnBoard(int[] move) {
         if (move != null) {
-            drawSequinInBoard(move[0], move[1], this.thisGame.getCpuPlayer(), null);
+            if (move[0] == -1) {
+                System.exit(-4);
+            }
+            else {
+                drawSequinInBoard(move[0], move[1], this.thisGame.getCpuPlayer(), null);
+            }
         }
     }
     

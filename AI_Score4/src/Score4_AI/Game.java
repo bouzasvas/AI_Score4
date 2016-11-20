@@ -34,6 +34,9 @@ public class Game {
     private Random randomTurn = new Random();
     private int turn;
     
+    //GUI Terminal Check
+    private boolean terminalGUI = false;
+    
     //Swing Components
     private JFrame parentWindow;
     private JLabel timeLabel;
@@ -95,17 +98,23 @@ public class Game {
             playerInfoLabel.setText(getPlayerTurnMsg());
         }
         
-        System.out.println("*************BOARD***************");
-        for (int row = 0; row < currentState.getBoard().length; row++) {
-            for (int col = 0; col < currentState.getBoard()[0].length; col++) {
-                System.out.print(currentState.getBoard()[row][col]+"\t");
-            }
-            System.out.println();
-        }
-        System.out.println("--------------");
+//        System.out.println("*************BOARD***************");
+//        for (int row = 0; row < currentState.getBoard().length; row++) {
+//            for (int col = 0; col < currentState.getBoard()[0].length; col++) {
+//                System.out.print(currentState.getBoard()[row][col]+"\t");
+//            }
+//            System.out.println();
+//        }
+//        System.out.println("--------------");
         
-        ifTerminalExit(currentState);
-        return nextMoveArray;
+//        ifTerminalExit(currentState);
+        if (!terminalGUI) {
+            ifTerminalExit(this.currentState);
+            return nextMoveArray;
+        }
+        else {
+            return new int[] {-1, -1};
+        }  
     }
     
     public int whosTurn() {
@@ -123,6 +132,10 @@ public class Game {
         return turn;
     }
     
+    public State getCurrentState() {
+        return this.currentState;
+    }
+    
     public int putSequinInPos(int columnInBoard) {
         for (int row = this.currentState.getBoard().length-1; row >= 0; row--) {
             int[][] newMove = this.currentState.getBoard();
@@ -134,13 +147,14 @@ public class Game {
                   newMove[row][columnInBoard] = Game.PLAYER;
                   currentState.setBoard(newMove);
                   currentState.getAvailableRows()[columnInBoard] = currentState.getAvailableRows()[columnInBoard] - 1;
+                  currentState.setValue(0);
                   return row;
               }
         }
         return -1;
     }
-    
-    private void ifTerminalExit(State currentState) {
+
+    public void ifTerminalExit(State currentState) {
         String msg;
         
         if (currentState.isTerminal()) {
@@ -168,6 +182,7 @@ public class Game {
             else {
                 System.exit(3);
             }
+            this.terminalGUI = true;
         }
     }
     
