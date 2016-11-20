@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +17,9 @@ import java.util.logging.Logger;
 public class State implements Cloneable {
 
     private int[][] board;
+    
+    //Father of State
+    public State parent = null;
 
     //Min-Max pruning
     private int a, b, value;
@@ -32,6 +33,10 @@ public class State implements Cloneable {
     //ArrayList which contains all the subarrays of board
     private List subarrays;
 
+    public State() {
+        this.value = Integer.MIN_VALUE;
+    }
+    
     public State(int[][] board) {
         this.board = board;
         splitBoard();
@@ -53,11 +58,15 @@ public class State implements Cloneable {
         
         //copy the board
         this.board = new int[6][7];
-        Arrays.copyOf(state.board, state.board.length);
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                this.board[row][col] = state.getBoard()[row][col];
+            }
+        }
         
         //copy the availableRows
         this.availableRows = new int[7];
-        Arrays.copyOf(state.availableRows, state.availableRows.length);
+        this.availableRows = Arrays.copyOf(state.availableRows, state.availableRows.length);
         
         //call to local splitBoard to fill the local subarrays list
         state.splitBoard();
@@ -127,12 +136,17 @@ public class State implements Cloneable {
         int row = this.availableRows[col];
 
         if (row != -1) {
-            if (turn == Game.AI) {
-                this.board[row][col] = Game.AI;
-            } else {
-                this.board[row][col] = Game.PLAYER;
+            if (this.board[row][col] == Game.EMPTY) {
+                if (turn == Game.AI) {
+                    this.board[row][col] = Game.AI;
+                } else {
+                    this.board[row][col] = Game.PLAYER;
+                }
+                this.availableRows[col] = row - 1;
             }
-            this.availableRows[col] = row - 1;
+            else {
+                return null;
+            }
         }
         
         //set Row-Col of the last move
@@ -151,19 +165,29 @@ public class State implements Cloneable {
             
             //produce the child and add them in arraylist
             children.add(child.makeMove(column, turn));
+            
+//            System.out.println("*************CHILD***************");
+//            for (int row = 0; row < child.getBoard().length; row++) {
+//                for (int col = 0; col < child.getBoard()[0].length; col++) {
+//                    System.out.print(child.getBoard()[row][col]+"\t");
+//                }
+//                System.out.println();
+//            }
+//            System.out.println("--------------");
+            
         }
         return children;
     }
 
     //TODO
-    public int evaluate() {        
+    public void evaluate() {        
 //        for (int index = 0; index < subarrays.size(); index++) {
 //            int[][] subarray = (int[][]) subarrays.get(index);
 //            
 //        }
         
         Random r = new Random();
-        return r.nextInt();
+        this.value =  r.nextInt(100);
     }
 
     private void splitBoard() {

@@ -68,6 +68,8 @@ public class Game {
     }
     
     public int[] nextMove(JLabel playerInfoLabel) {
+        int[] nextMoveArray = null;
+        
         int whosTurn = whosTurn();
         if (whosTurn == Game.AI) {
             playerInfoLabel.setText(getCpuTurnMsg());
@@ -76,12 +78,24 @@ public class Game {
             //the valid move to Score4Game.java class for making the move
             
             currentState = AI_minimax.max(currentState, 0);
-            return currentState.getMove();
+                    
+            //currentState = AI_minimax.finalMove;
+            nextMoveArray =  currentState.getMove();
             //return AI_minimax.max(currentState, 0).getMove();
         } else {
             playerInfoLabel.setText(getPlayerTurnMsg());
-            return null;
         }
+        
+        System.out.println("*************BOARD***************");
+        for (int row = 0; row < currentState.getBoard().length; row++) {
+            for (int col = 0; col < currentState.getBoard()[0].length; col++) {
+                System.out.print(currentState.getBoard()[row][col]+"\t");
+            }
+            System.out.println();
+        }
+        System.out.println("--------------");
+        
+        return nextMoveArray;
     }
     
     public int whosTurn() {
@@ -109,6 +123,7 @@ public class Game {
               if (newMove[row][columnInBoard] == Game.EMPTY) {
                   newMove[row][columnInBoard] = Game.PLAYER;
                   currentState.setBoard(newMove);
+                  currentState.getAvailableRows()[columnInBoard] = currentState.getAvailableRows()[columnInBoard] - 1;
                   return row;
               }
         }
