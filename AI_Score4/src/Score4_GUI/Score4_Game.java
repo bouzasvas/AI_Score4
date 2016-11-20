@@ -437,10 +437,7 @@ public class Score4_Game extends javax.swing.JFrame {
 
     private void makeTheMoveOnBoard(int[] move) {
         if (move != null) {
-            if (move[0] == -1) {
-                System.exit(-4);
-            }
-            else {
+            if (this.thisGame.timesVisitedTerminal != 1) {
                 drawSequinInBoard(move[0], move[1], this.thisGame.getCpuPlayer(), null);
             }
         }
@@ -457,6 +454,7 @@ public class Score4_Game extends javax.swing.JFrame {
             JLabel thisPos = this.seqPosition[row][col];
             thisPos.setIcon(p.getpIcon());
             pack();
+            this.thisGame.ifTerminalExit(this.thisGame.getCurrentState());
             int [] move = this.thisGame.nextMove();
             makeTheMoveOnBoard(move);
         }

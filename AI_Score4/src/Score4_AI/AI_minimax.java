@@ -22,7 +22,7 @@ public class AI_minimax {
     public static State max(State state, int depth) {
         if (state.isTerminal() || depth == maxDepth) {
             state.evaluate();
-            System.out.println(state.getValue());
+            //System.out.println(state.getValue());
 
 //            System.out.println("*************MAX STATE***************");
 //            for (int row = 0; row < state.getBoard().length; row++) {
@@ -66,14 +66,14 @@ public class AI_minimax {
 //            }
 //        }
 
-        System.out.println("EVALUATE VALUE "+maxState.getValue());
+        //System.out.println("EVALUATE VALUE "+maxState.getValue());
         return maxState;
     }
 
     public static State min(State state, int depth) {
         if (state.isTerminal() || depth == maxDepth) {
             state.evaluate();
-            System.out.println(state.getValue());
+            //System.out.println(state.getValue());
             return state;
         }
 
