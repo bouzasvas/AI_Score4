@@ -188,13 +188,151 @@ public class State implements Cloneable {
 
     //TODO
     public void evaluate() {        
-//        for (int index = 0; index < subarrays.size(); index++) {
-//            int[][] subarray = (int[][]) subarrays.get(index);
-//            
-//        }
+
         
-        Random r = new Random();
-        this.value =  r.nextInt(100);
+        splitBoard();
+        int totalValue = 0;
+        for (int index = 0; index < subarrays.size(); index++) {
+            int[][] subarray = (int[][]) subarrays.get(index);
+            totalValue += evalMiniArray(subarray);
+        }
+
+//        Random r = new Random();
+//        this.value =  r.nextInt(100);
+    }
+    
+    private int evalMiniArray(int[][] sub){
+        
+      
+        final int doubles = 10;
+        final int triples = 25;
+        final int quads = 1000;
+        
+        int totalMiniValue = 0;
+        
+        int sum_row = 0;
+        int sum_col = 0;
+        int sum_diag1 = 0;
+        int sum_diag2 = 0;
+        for (int row = 0; row < sub.length; row++) {
+                for (int col = 0; col < sub[row].length; col++) {
+                    sum_row += sub[row][col];
+                    sum_col += sub[col][row];
+
+                    if (row == col) {
+                        sum_diag1 += sub[row][col];
+                    }
+                    if (row == sub.length - 1 - row) {
+                        sum_diag2 += sub[row][col];
+                    }
+                }
+                
+                switch (sum_row) {
+                    case(4):
+                        totalMiniValue += quads;
+                        break;
+                    case(-4):
+                        totalMiniValue -= quads;
+                        break;
+                    case(3):
+                        totalMiniValue += triples;
+                        break;
+                    case(-3):
+                        totalMiniValue -= triples;
+                        break;
+                    case(2):
+                        totalMiniValue += doubles;
+                        break;
+                    case(-2):
+                        totalMiniValue -= doubles;
+                        break;
+                    default:
+                        totalMiniValue += sum_row;
+                        break;
+                }
+                
+                switch (sum_col) {
+                    case(4):
+                        totalMiniValue += quads;
+                        break;
+                    case(-4):
+                        totalMiniValue -= quads;
+                        break;
+                    case(3):
+                        totalMiniValue += triples;
+                        break;
+                    case(-3):
+                        totalMiniValue -= triples;
+                        break;
+                    case(2):
+                        totalMiniValue += doubles;
+                        break;
+                    case(-2):
+                        totalMiniValue -= doubles;
+                        break;
+                    default:
+                        totalMiniValue += sum_col;
+                        break;
+                }
+                
+                
+                
+                
+               
+                sum_row = 0;
+                sum_col = 0;
+        }
+        
+        switch (sum_diag1) {
+                    case(4):
+                        totalMiniValue += quads;
+                        break;
+                    case(-4):
+                        totalMiniValue -= quads;
+                        break;
+                    case(3):
+                        totalMiniValue += triples;
+                        break;
+                    case(-3):
+                        totalMiniValue -= triples;
+                        break;
+                    case(2):
+                        totalMiniValue += doubles;
+                        break;
+                    case(-2):
+                        totalMiniValue -= doubles;
+                        break;
+                    default:
+                        totalMiniValue += sum_col;
+                        break;
+                }
+                
+                switch (sum_diag2) {
+                    case(4):
+                        totalMiniValue += quads;
+                        break;
+                    case(-4):
+                        totalMiniValue -= quads;
+                        break;
+                    case(3):
+                        totalMiniValue += triples;
+                        break;
+                    case(-3):
+                        totalMiniValue -= triples;
+                        break;
+                    case(2):
+                        totalMiniValue += doubles;
+                        break;
+                    case(-2):
+                        totalMiniValue -= doubles;
+                        break;
+                    default:
+                        totalMiniValue += sum_col;
+                        break;
+                }
+        
+        
+        return totalMiniValue;
     }
 
     private void splitBoard() {
