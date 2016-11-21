@@ -1,27 +1,38 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+        Μέλη Ομάδας
+    Λόκκας Ιωάννης ΑΜ: 3120095
+    Μπούζας Βασίλειος ΑΜ: 3120124
+    Τασσιάς Παναγιώτης ΑΜ: 3120181
+*/
+
+/* The game consists of 2 Player Objects.
+
+    Each player has it's own members that are used during the whole Game like:
+        1. Player Name
+        2. Player sequin image icon
+        3. Player difficulty
+       etc.
+*/
+
 package Score4_AI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Vassilis
- */
+
 public class Player {
-    //For Message Dialog
+    //Used to show dialogs to the Parent Window
    private JPanel parentWindow;
    
-   //Class Fields
+   //Default Values used for AI
    private boolean ai = true;
    private String pname = "CPU";
+   
+   //The Sequin ImageIcon that is placed on the board
    private ImageIcon pIcon = null;
    
+   //The difficulty level that user chose corresponds to the MinMax depth
    public static int difficultyDepth;
 
    
@@ -37,18 +48,21 @@ public class Player {
            this.pIcon = new ImageIcon(getClass().getResource(filePath));
        }
        catch (Exception fileEx) {
+           // Exception thrown when Image File is missing
            JOptionPane.showMessageDialog(parentWindow, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
        }
        
+       // Set the MinMax depth between 4 and 6 based on user difficulty selection
+       // Higher difficult levels corresponds to deeper MinMax depth
        switch (pdifficulty) {
            case "Easy":
-               this.difficultyDepth = 3;
-               break;
-           case "Medium":
                this.difficultyDepth = 4;
                break;
-           case "Hard":
+           case "Medium":
                this.difficultyDepth = 5;
+               break;
+           case "Hard":
+               this.difficultyDepth = 6;
                break;
            default:
                this.difficultyDepth = -1;
@@ -66,6 +80,8 @@ public class Player {
        }
    }
 
+   //Setters and Getters
+   
     public boolean isAi() {
         return ai;
     }

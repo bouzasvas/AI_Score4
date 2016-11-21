@@ -1,37 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+        Μέλη Ομάδας
+    Λόκκας Ιωάννης ΑΜ: 3120095
+    Μπούζας Βασίλειος ΑΜ: 3120124
+    Τασσιάς Παναγιώτης ΑΜ: 3120181
+*/
+
 package Score4_AI;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Vassilis
- */
 public class AI_minimax {
 
-    //only for testing
-    //return new int[] {2, 3};
     public static int maxDepth = 4;
 
-    public static State finalMove = new State();
+    public static State bestState = new State();
 
     public static State max(State state, int depth) {
         if (state.isTerminal() || depth == maxDepth) {
             state.evaluate();
-            //System.out.println(state.getValue());
-
-//            System.out.println("*************MAX STATE***************");
-//            for (int row = 0; row < state.getBoard().length; row++) {
-//                for (int col = 0; col < state.getBoard()[0].length; col++) {
-//                    System.out.print(state.getBoard()[row][col] + "\t");
-//                }
-//                System.out.println();
-//            }
-//            System.out.println("--------------");
+            
             return state;
         }
 
@@ -43,6 +30,14 @@ public class AI_minimax {
 
         //iterate on children ArrayList
         for (State child : children) {
+            
+            // Check if a child at depth 0 is Terminal State
+            if (depth == 0) {
+                if (child.isTerminal()) {
+                    return child;
+                }
+            }
+            
             State intermediateState = min(child, depth + 1);
 
             if (intermediateState.getValue() > maxState.getValue()) {
@@ -52,36 +47,15 @@ public class AI_minimax {
             }
         }
 
-//        System.out.println(depth);
-
-//        if (depth == 0) {
-//            int minTmp = Integer.MIN_VALUE;
-//            for (State child : children) {
-//                int childValue = child.getValue();
-//                if (Math.max(childValue, minTmp) == childValue) {
-//                    minTmp = childValue;
-//                    finalMove = new State(child);
-//                    finalMove.setMove(child.getMove());
-//                }
-//            }
-//        }
-
-        //System.out.println("EVALUATE VALUE "+maxState.getValue());
         return maxState;
     }
 
     public static State min(State state, int depth) {
         if (state.isTerminal() || depth == maxDepth) {
             state.evaluate();
-            //System.out.println(state.getValue());
             return state;
         }
 
-//        if (depth == 1) {
-//            if (state.getValue() < finalMove.getValue()) {
-//                finalMove = state;
-//            }
-//        }
         //get the State children
         ArrayList<State> children = state.getChildren(Game.PLAYER);
 
@@ -101,5 +75,51 @@ public class AI_minimax {
 
         return minState;
     }
+    
+    
+    //MinMax algorithm with tree pruning
 
+    public static int alphabeta(State state, int depth, int alpha, int beta, int player) {
+        if (state.isTerminal() || depth == 0) {
+            state.evaluate();
+            return state.getValue();
+        }
+        if (player == Game.AI) {
+            ArrayList<State> children = state.getChildren(Game.AI);
+            int v = Integer.MIN_VALUE;
+            for (State child : children) {
+                v = Math.max(v, alphabeta(child, depth - 1, alpha, beta, Game.PLAYER));
+                alpha = Math.max(alpha, v);
+                if (beta <= alpha) {
+                    
+                    bestState = new State(child);
+                    bestState.setMove(child.getMove());
+                    break;
+                }
+            }
+            bestState.setValue(v);
+            return bestState.getValue();
+        } 
+        else {
+            ArrayList<State> children = state.getChildren(Game.AI);
+            int v = Integer.MAX_VALUE;
+            for (State child : children) {
+                v = Math.min(v, alphabeta(child, depth - 1, alpha, beta, Game.AI));
+                beta = Math.min(beta, v);
+                if (beta <= alpha) {
+                    bestState = new State(child);
+                    bestState.setMove(child.getMove());
+                    break;
+                }
+            }
+            bestState.setValue(v);   
+            return bestState.getValue();
+        }
+    }
+    
+    
+    public static State minimaxWithPruning(State current){
+        alphabeta(current, 8, Integer.MIN_VALUE, Integer.MAX_VALUE, Game.AI);
+        return bestState;
+    }
 }
